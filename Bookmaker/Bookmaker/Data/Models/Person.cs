@@ -54,6 +54,7 @@ namespace Bookmaker.Data.Models
         {
             StringBuilder sb = new StringBuilder();
 
+            sb.AppendLine("Id: " + this.Id);
             sb.AppendLine("Name: " + this.Name);
             sb.AppendLine("Age: " + this.Age);
 

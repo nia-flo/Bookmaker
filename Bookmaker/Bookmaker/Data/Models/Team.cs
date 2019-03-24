@@ -83,6 +83,7 @@ namespace Bookmaker.Data.Models
         {
             StringBuilder sb = new StringBuilder();
 
+            sb.AppendLine("Id: " + this.Id);
             sb.AppendLine("Name: " + this.Name);
             sb.AppendLine("Division: " + this.Division);
             sb.AppendLine("Budget: " + this.Budget);
@@ -99,6 +100,16 @@ namespace Bookmaker.Data.Models
             }
 
             return sb.ToString();
+        }
+
+        public void AddPlayer(Player player)
+        {
+            this.Players.Add(player);
+        }
+
+        public void RemovePlayer(Player player)
+        {
+            this.Players.Remove(player);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Bookmaker.Data
 {
     public static class Validations
     {
-        public static bool IsNameValid(string name) => Regex.IsMatch(name, @"^[a-zA-Z]+$");
+        public static bool IsNameValid(string name) => Regex.IsMatch(name, @"^[a-zA-Z ]+$");
 
         public static bool IsAgeValid(int age)
         {

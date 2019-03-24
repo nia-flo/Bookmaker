@@ -20,5 +20,7 @@ namespace Bookmaker.Data
             => new ArgumentException("The budget amount is invalid - it must be positive!");
 
         public static ArgumentException InvalidId => new ArgumentException("Invalid Id!");
+
+        public static ArgumentException NotOnSalePlayer => new ArgumentException("Player is not on sale!");
     }
 }

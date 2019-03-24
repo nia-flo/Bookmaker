@@ -44,5 +44,15 @@ namespace Bookmaker.Data.Models
 
             return sb.ToString();
         }
+
+        public void Sell()
+        {
+            this.IsOnSale = true;
+        }
+
+        public void Buy()
+        {
+            this.IsOnSale = true;
+        }
     }
 }
