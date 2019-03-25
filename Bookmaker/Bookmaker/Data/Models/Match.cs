@@ -36,7 +36,7 @@ namespace Bookmaker.Data.Models
                 sb.AppendLine("There isn't any result yet.");
             }
 
-            return sb.ToString();
+            return sb.ToString().Trim();
         }
     }
 }

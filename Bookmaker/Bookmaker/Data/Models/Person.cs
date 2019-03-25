@@ -58,7 +58,7 @@ namespace Bookmaker.Data.Models
             sb.AppendLine("Name: " + this.Name);
             sb.AppendLine("Age: " + this.Age);
 
-            return sb.ToString();
+            return sb.ToString().Trim();
         }
     }
 }

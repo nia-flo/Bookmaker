@@ -27,7 +27,7 @@ namespace Bookmaker.Services
             {
                 throw Exceptions.InvalidId;
             }
-
+            
             context.Teams.First(t => t.Id == id).Delete();
 
             context.SaveChanges();

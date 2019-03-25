@@ -16,6 +16,11 @@ namespace Bookmaker.Data.Models
 
         public void Delete()
         {
+            foreach (var player in this.Players)
+            {
+                player.Sell();
+            }
+
             this.IsDeleted = true;
         }
 
@@ -47,7 +52,7 @@ namespace Bookmaker.Data.Models
         public int Division
         {
             get => division;
-            
+
             set
             {
                 if (Validations.IsDivisionValid(value))
@@ -88,15 +93,29 @@ namespace Bookmaker.Data.Models
             sb.AppendLine("Division: " + this.Division);
             sb.AppendLine("Budget: " + this.Budget);
             sb.AppendLine("Players:");
-            foreach (var player in this.Players)
+            if (this.Players.Count == 0)
             {
-                sb.AppendLine(player.ToString());
+                sb.AppendLine("None");
+            }
+            else
+            {
+                foreach (var player in this.Players)
+                {
+                    sb.AppendLine(player.ToString());
+                }
             }
 
             sb.AppendLine("Coaches:");
-            foreach (var coach in this.Coaches)
+            if (this.Coaches.Count == 0)
             {
-                sb.AppendLine(coach.ToString());
+                sb.AppendLine("None");
+            }
+            else
+            {
+                foreach (var coach in this.Coaches)
+                {
+                    sb.AppendLine(coach.ToString());
+                }
             }
 
             return sb.ToString();

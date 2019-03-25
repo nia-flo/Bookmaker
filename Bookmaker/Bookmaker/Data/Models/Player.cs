@@ -26,23 +26,27 @@ namespace Bookmaker.Data.Models
 
             if (this.IsOnSale)
             {
-                sb.AppendLine("Is on sale.");
+                sb.AppendLine("Status: Is on sale");
             }
             else
             {
-                sb.AppendLine("Is not on sale.");
+                sb.AppendLine("Status: Is not on sale");
             }
 
-            if (this.Injuries.Count > 0)
+            sb.AppendLine("Injuries:");
+            if (this.Injuries.Count == 0)
             {
-                sb.AppendLine("Injuries:");
+                sb.AppendLine("None");
+            }
+            else
+            {
                 foreach (var injury in this.Injuries)
                 {
                     sb.AppendLine(injury.ToString());
                 }
             }
 
-            return sb.ToString();
+            return sb.ToString().Trim();
         }
 
         public void Sell()
@@ -52,7 +56,7 @@ namespace Bookmaker.Data.Models
 
         public void Buy()
         {
-            this.IsOnSale = true;
+            this.IsOnSale = false;
         }
     }
 }

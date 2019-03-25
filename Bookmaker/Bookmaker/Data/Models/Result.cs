@@ -17,7 +17,7 @@ namespace Bookmaker.Data.Models
             sb.AppendLine("Host team goals count: " + this.HostGoals);
             sb.AppendLine("Guest team goals count: " + this.GuestGoals);
 
-            return sb.ToString();
+            return sb.ToString().Trim();
         }
     }
 }
