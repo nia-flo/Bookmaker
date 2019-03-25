@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using Bookmaker.Data.Models;
 using Bookmaker.Services;
 
@@ -46,7 +47,7 @@ namespace Bookmaker.View
             Console.WriteLine();
             int input = int.Parse(Console.ReadLine());
 
-            Console.WriteLine();
+            Console.Clear();
 
             switch (input)
             {
@@ -119,6 +120,11 @@ namespace Bookmaker.View
 
         private void ListAllMatchesForATeam()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 11) + "LIST ALL MATCHES FOR A TEAM" + new string(' ', 12));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Console.WriteLine("Id of the team:");
@@ -149,6 +155,11 @@ namespace Bookmaker.View
 
         private void ListAllMatches()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 17) + "LIST ALL MATCHES" + new string(' ', 17));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             List<Match> matches = matchService.GetAll();
 
             if (matches.Count == 0)
@@ -169,6 +180,11 @@ namespace Bookmaker.View
 
         private void GetMatchResult()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 17) + "GET MATCH RESULT" + new string(' ', 17));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Console.WriteLine("Id of the match:");
@@ -184,6 +200,11 @@ namespace Bookmaker.View
 
         private void PlayMatch()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 20) + "PLAY MATCH" + new string(' ', 20));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Console.WriteLine("Id of the match:");
@@ -203,6 +224,11 @@ namespace Bookmaker.View
 
         private void DeleteMatch()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 18) + "DELETE MATCH" + new string(' ', 18));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Console.WriteLine("Id of the match:");
@@ -220,6 +246,11 @@ namespace Bookmaker.View
 
         private void AddMatch()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 20) + "ADD MATCH" + new string(' ', 21));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Match match = new Match();
@@ -244,6 +275,11 @@ namespace Bookmaker.View
 
         private void ListAllPlayersForATeam()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 11) + "LIST ALL PLAYERS FOR A TEAM" + new string(' ', 12));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             Console.WriteLine("Id of the team:");
             int id = int.Parse(Console.ReadLine());
 
@@ -273,6 +309,11 @@ namespace Bookmaker.View
 
         private void ListAllTeams()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 18) + "LIST ALL TEAMS" + new string(' ', 18));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             List<Team> teams = teamService.GetAll();
 
             if (teams.Count == 0)
@@ -292,6 +333,11 @@ namespace Bookmaker.View
 
         private void TeamSellPlayer()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 17) + "TEAM SELL PLAYER" + new string(' ', 17));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Console.WriteLine("Id of the team:");
@@ -309,6 +355,11 @@ namespace Bookmaker.View
 
         private void AddPlayerToATeam()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 15) + "ADD PLAYER TO A TEAM" + new string(' ', 15));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Console.WriteLine("Id of the team:");
@@ -326,6 +377,11 @@ namespace Bookmaker.View
 
         private void DeleteTeam()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 19) + "DELETE TEAM" + new string(' ', 20));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Console.WriteLine("Id:");
@@ -343,6 +399,11 @@ namespace Bookmaker.View
 
         private void AddTeam()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 21) + "ADD TEAM" + new string(' ', 21));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Team team = new Team();
@@ -365,6 +426,11 @@ namespace Bookmaker.View
 
         private void ListAllPlayersOnSale()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 13) + "LIST ALL PLAYERS ON SALE" + new string(' ', 13));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             List<Player> playersOnSale = playerService.GetAllOnSale();
 
             if (playersOnSale.Count == 0)
@@ -384,6 +450,11 @@ namespace Bookmaker.View
 
         private void ListAllPlayers()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 17) + "LIST ALL PLAYERS" + new string(' ', 17));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             List<Player> players = playerService.GetAll();
 
             if (players.Count == 0)
@@ -404,6 +475,11 @@ namespace Bookmaker.View
 
         private void DeletePlayer()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 18) + "DELETE PLAYER" + new string(' ', 19));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Console.WriteLine("Player Id:");
@@ -421,6 +497,11 @@ namespace Bookmaker.View
 
         private void AddPlayer()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 20) + "ADD PLAYER" + new string(' ', 20));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Player player = new Player();
@@ -442,6 +523,11 @@ namespace Bookmaker.View
 
         private void ListAllCoaches()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 17) + "LIST ALL COACHES" + new string(' ', 17));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             List<Coach> coaches = coachSevice.GetAll();
 
             if (coaches.Count == 0)
@@ -462,6 +548,11 @@ namespace Bookmaker.View
 
         private void DeleteCoach()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 19) + "DELETE COACH" + new string(' ', 19));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Console.WriteLine("Coach Id:");
@@ -479,6 +570,11 @@ namespace Bookmaker.View
 
         private void AddCoach()
         {
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine(new string(' ', 20) + "ADD COACH" + new string(' ', 21));
+            Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
+
             try
             {
                 Coach coach = new Coach();
@@ -502,6 +598,7 @@ namespace Bookmaker.View
             Console.WriteLine(new string('#', 50));
             Console.WriteLine(new string(' ', 23) + "MENU" + new string(' ', 23));
             Console.WriteLine(new string('#', 50));
+            Console.WriteLine();
 
             Console.WriteLine("0. Exit");
             Console.WriteLine("1. Add coach");
