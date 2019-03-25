@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Text;
+using Bookmaker.Data;
 using Bookmaker.Data.Models;
 using Bookmaker.Services;
 
@@ -9,18 +11,16 @@ namespace Bookmaker.View
     public class Display
     {
         private ICoachSevice coachSevice;
-        private IInjuryService injuryService;
         private IPlayerService playerService;
         private ITeamService teamService;
         private IMatchService matchService;
 
-        public Display(ICoachSevice coachSevice, IInjuryService injuryService, IPlayerService playerService, ITeamService teamService, IMatchService matchService)
+        public Display()
         {
-            this.coachSevice = coachSevice;
-            this.injuryService = injuryService;
-            this.playerService = playerService;
-            this.teamService = teamService;
-            this.matchService = matchService;
+            this.coachSevice = new CoachService();
+            this.playerService = new PlayerService();
+            this.teamService = new TeamService();
+            this.matchService = new MatchService();
 
             Home();
         }
@@ -36,6 +36,7 @@ namespace Bookmaker.View
                 return;
             }
 
+            Console.WriteLine();
             Console.WriteLine("Press enter to continue...");
             string justAnInput = Console.ReadLine();
 
@@ -110,6 +111,9 @@ namespace Bookmaker.View
                 case 19:
                     ListAllMatchesForATeam();
                     break;
+                case 20:
+                    AddInjuryToAPlayer();
+                    break;
                 default:
                     Console.WriteLine("Invalid option!");
                     break;
@@ -118,12 +122,32 @@ namespace Bookmaker.View
             return true;
         }
 
+        private void AddInjuryToAPlayer()
+        {
+            Console.WriteLine(Label("ADD INJURY TO A PLAYER"));
+
+            try
+            {
+                Console.WriteLine("Id of the player:");
+                int playerId = int.Parse(Console.ReadLine());
+                Console.WriteLine("Injury:");
+                string injuryName = Console.ReadLine();
+
+                playerService.AddInjury(playerId, injuryName);
+
+                Console.WriteLine("Injury added successfully!");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+
+
+        }
+
         private void ListAllMatchesForATeam()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 11) + "LIST ALL MATCHES FOR A TEAM" + new string(' ', 12));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("LIST ALL MATCHES FOR A TEAM"));
 
             try
             {
@@ -155,10 +179,7 @@ namespace Bookmaker.View
 
         private void ListAllMatches()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 17) + "LIST ALL MATCHES" + new string(' ', 17));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("LIST ALL MATCHES"));
 
             List<Match> matches = matchService.GetAll();
 
@@ -180,10 +201,7 @@ namespace Bookmaker.View
 
         private void GetMatchResult()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 17) + "GET MATCH RESULT" + new string(' ', 17));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("GET MATCH RESULT"));
 
             try
             {
@@ -200,10 +218,7 @@ namespace Bookmaker.View
 
         private void PlayMatch()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 20) + "PLAY MATCH" + new string(' ', 20));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("PLAY MATCH"));
 
             try
             {
@@ -224,10 +239,7 @@ namespace Bookmaker.View
 
         private void DeleteMatch()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 18) + "DELETE MATCH" + new string(' ', 18));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("DELETE MATCH"));
 
             try
             {
@@ -246,10 +258,7 @@ namespace Bookmaker.View
 
         private void AddMatch()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 20) + "ADD MATCH" + new string(' ', 21));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("ADD MATCH"));
 
             try
             {
@@ -275,10 +284,7 @@ namespace Bookmaker.View
 
         private void ListAllPlayersForATeam()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 11) + "LIST ALL PLAYERS FOR A TEAM" + new string(' ', 12));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("LIST ALL PLAYERS FOR A TEAM"));
 
             Console.WriteLine("Id of the team:");
             int id = int.Parse(Console.ReadLine());
@@ -309,10 +315,7 @@ namespace Bookmaker.View
 
         private void ListAllTeams()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 18) + "LIST ALL TEAMS" + new string(' ', 18));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("LIST ALL TEAMS"));
 
             List<Team> teams = teamService.GetAll();
 
@@ -333,10 +336,7 @@ namespace Bookmaker.View
 
         private void TeamSellPlayer()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 17) + "TEAM SELL PLAYER" + new string(' ', 17));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("TEAM SELL PLAYER"));
 
             try
             {
@@ -355,10 +355,7 @@ namespace Bookmaker.View
 
         private void AddPlayerToATeam()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 15) + "ADD PLAYER TO A TEAM" + new string(' ', 15));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("ADD PLAYER TO A TEAM"));
 
             try
             {
@@ -377,10 +374,7 @@ namespace Bookmaker.View
 
         private void DeleteTeam()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 19) + "DELETE TEAM" + new string(' ', 20));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("DELETE TEAM"));
 
             try
             {
@@ -399,10 +393,7 @@ namespace Bookmaker.View
 
         private void AddTeam()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 21) + "ADD TEAM" + new string(' ', 21));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("ADD TEAM"));
 
             try
             {
@@ -426,10 +417,7 @@ namespace Bookmaker.View
 
         private void ListAllPlayersOnSale()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 13) + "LIST ALL PLAYERS ON SALE" + new string(' ', 13));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("LIST ALL PLAYERS ON SALE"));
 
             List<Player> playersOnSale = playerService.GetAllOnSale();
 
@@ -450,10 +438,7 @@ namespace Bookmaker.View
 
         private void ListAllPlayers()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 17) + "LIST ALL PLAYERS" + new string(' ', 17));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("LIST ALL PLAYERS"));
 
             List<Player> players = playerService.GetAll();
 
@@ -475,10 +460,7 @@ namespace Bookmaker.View
 
         private void DeletePlayer()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 18) + "DELETE PLAYER" + new string(' ', 19));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("DELETE PLAYER"));
 
             try
             {
@@ -497,10 +479,7 @@ namespace Bookmaker.View
 
         private void AddPlayer()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 20) + "ADD PLAYER" + new string(' ', 20));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("ADD PLAYER"));
 
             try
             {
@@ -523,10 +502,7 @@ namespace Bookmaker.View
 
         private void ListAllCoaches()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 17) + "LIST ALL COACHES" + new string(' ', 17));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("LIST ALL COACHES"));
 
             List<Coach> coaches = coachSevice.GetAll();
 
@@ -548,10 +524,7 @@ namespace Bookmaker.View
 
         private void DeleteCoach()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 19) + "DELETE COACH" + new string(' ', 19));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("DELETE COACH"));
 
             try
             {
@@ -570,10 +543,7 @@ namespace Bookmaker.View
 
         private void AddCoach()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 20) + "ADD COACH" + new string(' ', 21));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("ADD COACH"));
 
             try
             {
@@ -595,31 +565,48 @@ namespace Bookmaker.View
 
         private void ShowMenu()
         {
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine(new string(' ', 23) + "MENU" + new string(' ', 23));
-            Console.WriteLine(new string('#', 50));
-            Console.WriteLine();
+            Console.WriteLine(Label("MENU"));
+            
+            StringBuilder sb = new StringBuilder();
 
-            Console.WriteLine("0. Exit");
-            Console.WriteLine("1. Add coach");
-            Console.WriteLine("2. Delete coach");
-            Console.WriteLine("3. List all coaches");
-            Console.WriteLine("4. Add player");
-            Console.WriteLine("5. Delete player");
-            Console.WriteLine("6. List all players");
-            Console.WriteLine("7. List all players on sale");
-            Console.WriteLine("8. Add team");
-            Console.WriteLine("9. Delete team");
-            Console.WriteLine("10. Add player to a team");
-            Console.WriteLine("11. Team sell player");
-            Console.WriteLine("12. List all teams");
-            Console.WriteLine("13. List all players for a team");
-            Console.WriteLine("14. Add match");
-            Console.WriteLine("15. Delete match");
-            Console.WriteLine("16. Play Match");
-            Console.WriteLine("17. Get match result");
-            Console.WriteLine("18. List all matches");
-            Console.WriteLine("19. List all matches for a team");
+            sb.AppendLine("0. Exit");
+            sb.AppendLine("1. Add coach");
+            sb.AppendLine("2. Delete coach");
+            sb.AppendLine("3. List all coaches");
+            sb.AppendLine("4. Add player");
+            sb.AppendLine("5. Delete player");
+            sb.AppendLine("6. List all players");
+            sb.AppendLine("7. List all players on sale");
+            sb.AppendLine("8. Add team");
+            sb.AppendLine("9. Delete team");
+            sb.AppendLine("10. Add player to a team");
+            sb.AppendLine("11. Team sell player");
+            sb.AppendLine("12. List all teams");
+            sb.AppendLine("13. List all players for a team");
+            sb.AppendLine("14. Add match");
+            sb.AppendLine("15. Delete match");
+            sb.AppendLine("16. Play Match");
+            sb.AppendLine("17. Get match result");
+            sb.AppendLine("18. List all matches");
+            sb.AppendLine("19. List all matches for a team");
+            sb.AppendLine("20. Add injury to a player");
+
+            Console.WriteLine(sb.ToString().Trim());
+        }
+
+        private string Label(string text)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine(new string('#', Constants.LabelSize));
+
+            int before = (Constants.LabelSize - text.Length) / 2;
+            int after = Constants.LabelSize - before;
+            sb.AppendLine(new string(' ', before) + text + new string(' ', after));
+
+            sb.AppendLine(new string('#', Constants.LabelSize));
+
+            return sb.ToString();
         }
     }
 }

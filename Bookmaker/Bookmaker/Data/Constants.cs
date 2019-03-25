@@ -9,5 +9,7 @@
         public static int DivisionsCount => 3;
 
         public static int MaxGoalsCount => 10;
+
+        public static int LabelSize => 50;
     }
 }

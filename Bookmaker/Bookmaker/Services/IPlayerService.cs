@@ -13,8 +13,8 @@ namespace Bookmaker.Services
 
         List<Player> GetAllOnSale();
 
-        Player GetPlayerWithId(int id);
-
         Player GetPlayerById(int id);
+
+        void AddInjury(int playerId, string name);
     }
 }

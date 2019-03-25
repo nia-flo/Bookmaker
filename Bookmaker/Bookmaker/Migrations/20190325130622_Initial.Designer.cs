@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bookmaker.Migrations
 {
     [DbContext(typeof(BookmakerContext))]
-    [Migration("20190324231817_Initial")]
+    [Migration("20190325130622_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

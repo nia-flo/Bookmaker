@@ -10,9 +10,9 @@ namespace Bookmaker.Services
     {
         private BookmakerContext context;
 
-        public MatchService(BookmakerContext context)
+        public MatchService()
         {
-            this.context = context;
+            this.context = new BookmakerContext();
         }
 
         public void AddMatch(Match match)

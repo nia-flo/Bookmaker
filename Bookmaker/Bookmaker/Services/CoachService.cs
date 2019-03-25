@@ -9,9 +9,9 @@ namespace Bookmaker.Services
     {
         private BookmakerContext context;
 
-        public CoachService(BookmakerContext context)
+        public CoachService()
         {
-            this.context = context;
+            this.context = new BookmakerContext();
         }
 
         public void AddCoach(Coach coach)

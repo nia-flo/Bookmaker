@@ -9,9 +9,9 @@ namespace Bookmaker.Services
     {
         private BookmakerContext context;
 
-        public TeamService(BookmakerContext context)
+        public TeamService()
         {
-            this.context = context;
+            this.context = new BookmakerContext();
         }
 
         public void AddTeam(Team team)

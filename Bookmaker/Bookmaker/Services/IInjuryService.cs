@@ -4,6 +4,6 @@ namespace Bookmaker.Services
 {
     public interface IInjuryService
     {
-        void AddInjury(Injury injury);
+        void AddInjury(string name);
     }
 }

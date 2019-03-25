@@ -19,6 +19,7 @@ namespace Bookmaker.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            //koi server da izpolzva
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(ConfigurationData.ConnectionString);

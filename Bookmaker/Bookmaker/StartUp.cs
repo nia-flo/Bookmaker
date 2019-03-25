@@ -10,10 +10,7 @@ namespace Bookmaker
     {
         static void Main(string[] args)
         {
-            BookmakerContext context = new BookmakerContext();
-
-            Display display = new Display(new CoachService(context), new InjuryService(context),
-                new PlayerService(context), new TeamService(context), new MatchService(context));
+            Display display = new Display();
         }
     }
 }

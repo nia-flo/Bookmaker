@@ -8,10 +8,12 @@ namespace Bookmaker.Services
     public class PlayerService : IPlayerService
     {
         private BookmakerContext context;
+        private IInjuryService injuryService;
 
-        public PlayerService(BookmakerContext context)
+        public PlayerService()
         {
-            this.context = context;
+            this.context = new BookmakerContext();
+            this.injuryService = new InjuryService();
         }
 
         public void AddPlayer(Player player)
@@ -43,21 +45,31 @@ namespace Bookmaker.Services
             return context.Players.Where(p => !p.IsDeleted && p.IsOnSale).ToList();
         }
 
-        public Player GetPlayerWithId(int id)
+        public Player GetPlayerById(int id)
         {
-            Player player = context.Players.FirstOrDefault(p => p.Id == id);
+            return context.Players.FirstOrDefault(p => p.Id == id);
+        }
+
+        public void AddInjury(int playerId, string name)
+        {
+            Player player = GetPlayerById(playerId);
 
             if (player == null)
             {
                 throw Exceptions.InvalidId;
             }
 
-            return player;
-        }
+            Injury injury = context.Injuries.FirstOrDefault(i => i.Name == name);
 
-        public Player GetPlayerById(int id)
-        {
-            return context.Players.FirstOrDefault(p => p.Id == id);
+            if (injury == null)
+            {
+                injuryService.AddInjury(name);
+                injury = context.Injuries.FirstOrDefault(i => i.Name == name);
+            }
+
+            player.Injuries.Add(injury);
+
+            context.SaveChanges();
         }
     }
 }
