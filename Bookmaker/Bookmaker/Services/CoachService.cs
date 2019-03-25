@@ -40,7 +40,14 @@ namespace Bookmaker.Services
 
         public Coach GetCoachById(int id)
         {
-            return context.Coaches.FirstOrDefault(c => c.Id == id);
+            Coach coach = context.Coaches.FirstOrDefault(c => c.Id == id);
+
+            if (coach == null || coach.IsDeleted == true)
+            {
+                throw Exceptions.InvalidId;
+            }
+
+            return coach;
         }
     }
 }

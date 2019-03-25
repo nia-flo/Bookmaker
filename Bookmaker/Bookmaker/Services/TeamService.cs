@@ -84,7 +84,14 @@ namespace Bookmaker.Services
 
         public Team GetTeamById(int id)
         {
-            return context.Teams.FirstOrDefault(t => t.Id == id);
+            Team team = context.Teams.FirstOrDefault(t => t.Id == id);
+
+            if (team == null || team.IsDeleted)
+            {
+                throw Exceptions.InvalidId;
+            }
+
+            return team;
         }
     }
 }

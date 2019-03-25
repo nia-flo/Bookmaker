@@ -84,7 +84,14 @@ namespace Bookmaker.Services
 
         public Match GetMatchById(int id)
         {
-            return context.Matches.FirstOrDefault(m => m.Id == id);
+            Match match = context.Matches.FirstOrDefault(m => m.Id == id);
+
+            if (match == null || match.IsDeleted)
+            {
+                throw Exceptions.InvalidId;
+            }
+
+            return match;
         }
     }
 }

@@ -114,12 +114,92 @@ namespace Bookmaker.View
                 case 20:
                     AddInjuryToAPlayer();
                     break;
+                case 21:
+                    GetCoachById();
+                    break;
+                case 22:
+                    GetPlayerById();
+                    break;
+                case 23:
+                    GetTeamById();
+                    break;
+                case 24:
+                    GetMatchById();
+                    break;
                 default:
                     Console.WriteLine("Invalid option!");
                     break;
             }
 
             return true;
+        }
+
+        private void GetMatchById()
+        {
+            try
+            {
+                Console.WriteLine("Id of the match:");
+                int id = int.Parse(Console.ReadLine());
+
+                Match match = matchService.GetMatchById(id);
+
+                Console.WriteLine(match);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine("Match not found.");
+            }
+        }
+
+        private void GetTeamById()
+        {
+            try
+            {
+                Console.WriteLine("Id of the team:");
+                int id = int.Parse(Console.ReadLine());
+
+                Team team = teamService.GetTeamById(id);
+
+                Console.WriteLine(team);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine("Team not found.");
+            }
+        }
+
+        private void GetPlayerById()
+        {
+            try
+            {
+                Console.WriteLine("Id of the player:");
+                int id = int.Parse(Console.ReadLine());
+
+                Player player = playerService.GetPlayerById(id);
+
+                Console.WriteLine(player);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine("Player not found");
+            }
+        }
+
+        private void GetCoachById()
+        {
+            try
+            {
+                Console.WriteLine("Id of the coach:");
+                int id = int.Parse(Console.ReadLine());
+
+                Coach coach = coachSevice.GetCoachById(id);
+
+                Console.WriteLine(coach);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine("Coach not found.");
+            }
         }
 
         private void AddInjuryToAPlayer()
@@ -590,6 +670,10 @@ namespace Bookmaker.View
             sb.AppendLine("18. List all matches");
             sb.AppendLine("19. List all matches for a team");
             sb.AppendLine("20. Add injury to a player");
+            sb.AppendLine("21. Get coach by Id");
+            sb.AppendLine("22. Get player by Id");
+            sb.AppendLine("23. Get team by Id");
+            sb.AppendLine("24. Get match by Id");
 
             Console.WriteLine(sb.ToString().Trim());
         }

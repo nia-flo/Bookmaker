@@ -47,7 +47,14 @@ namespace Bookmaker.Services
 
         public Player GetPlayerById(int id)
         {
-            return context.Players.FirstOrDefault(p => p.Id == id);
+            Player player = context.Players.FirstOrDefault(p => p.Id == id);
+
+            if (player == null || player.IsDeleted)
+            {
+                throw Exceptions.InvalidId;
+            }
+
+            return player;
         }
 
         public void AddInjury(int playerId, string name)

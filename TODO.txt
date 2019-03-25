@@ -1,7 +1,8 @@
 delete -> must not delete already deleted entities
 
+Exceptions -> string
+
 Console -> beautify
 
-Exceptions -> string
 
 номерче на играч
