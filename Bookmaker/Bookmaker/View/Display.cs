@@ -105,33 +105,36 @@ namespace Bookmaker.View
                     ListAllTeams();
                     break;
                 case 15:
-                    ListAllPlayersForATeam();
+                    ListAllTeamsByDivision();
                     break;
                 case 16:
-                    GetTeamById();
+                    ListAllPlayersForATeam();
                     break;
                 case 17:
-                    AddMatch();
+                    GetTeamById();
                     break;
                 case 18:
-                    DeleteMatch();
+                    AddMatch();
                     break;
                 case 19:
-                    PlayMatch();
+                    DeleteMatch();
                     break;
                 case 20:
-                    GetMatchResult();
+                    PlayMatch();
                     break;
                 case 21:
-                    ListAllMatches();
+                    GetMatchResult();
                     break;
                 case 22:
-                    ListAllMatchesForATeam();
+                    ListAllMatches();
                     break;
                 case 23:
-                    AddInjuryToAPlayer();
+                    ListAllMatchesForATeam();
                     break;
                 case 24:
+                    AddInjuryToAPlayer();
+                    break;
+                case 25:
                     GetMatchById();
                     break;
                 default:
@@ -464,6 +467,37 @@ namespace Bookmaker.View
             }
         }
 
+        private void ListAllTeamsByDivision()
+        {
+            Console.WriteLine(Label("LIST ALL TEAMS FOR A DIVISION"));
+
+            Console.WriteLine("Division:");
+            int division = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+
+            if (!Validations.IsDivisionValid(division))
+            {
+                Console.WriteLine($"Invalid division - it must be between 1 and {Constants.DivisionsCount}!");
+
+                return;
+            }
+
+            List<Team> teams = teamService.GetAllByDivision(division);
+
+            if (teams.Count == 0)
+            {
+                Console.WriteLine("None");
+                return;
+            }
+
+            foreach (var team in teams)
+            {
+                Console.WriteLine(this.Buffer("TEAM"));
+
+                Console.WriteLine(team);
+            }
+        }
+
         private void ListAllTeams()
         {
             Console.WriteLine(Label("LIST ALL TEAMS"));
@@ -779,9 +813,9 @@ namespace Bookmaker.View
             sb.AppendLine("12. Add player to a team		19. Play Match");
             sb.AppendLine("13. Team sell player			20. Get match result");
             sb.AppendLine("14. List all teams			21. List all matches");
-            sb.AppendLine("15. List all players for a team		22. List all matches for a team");
-            sb.AppendLine("16. Get team by Id			23. Add injury to a player");
-            sb.AppendLine("					24. Get match by Id");
+            sb.AppendLine("15. List all teams by division		23. List all matches for a team");
+            sb.AppendLine("16. List all players for a team		24. Add injury to a player");
+            sb.AppendLine("17. Get team by Id			25. Get match by Id");
 
             Console.WriteLine(sb.ToString().Trim());
         }

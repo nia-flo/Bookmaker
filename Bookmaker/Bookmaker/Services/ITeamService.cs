@@ -15,6 +15,8 @@ namespace Bookmaker.Services
 
         List<Team> GetAll();
 
+        List<Team> GetAllByDivision(int division);
+
         List<Player> GetAllPlayersForATeam(int teamId);
 
         Team GetTeamById(int id);

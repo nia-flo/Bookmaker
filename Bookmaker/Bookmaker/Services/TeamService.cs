@@ -73,6 +73,11 @@ namespace Bookmaker.Services
             return context.Teams.Where(t => !t.IsDeleted).ToList();
         }
 
+        public List<Team> GetAllByDivision(int division)
+        {
+            return context.Teams.Where(t => !t.IsDeleted && t.Division == division).ToList();
+        }
+
         public List<Player> GetAllPlayersForATeam(int teamId)
         {
             if (context.Teams.Count(t => t.Id == teamId) == 0)

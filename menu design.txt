@@ -8,11 +8,11 @@ Coach options:				5. Add player
 					
 Team options:				Match options:
 
-10. Add team				17. Add match
-11. Delete team				18. Delete match
-12. Add player to a team		19. Play Match
-13. Team sell player			20. Get match result
-14. List all teams			21. List all matches
-15. List all players for a team		22. List all matches for a team
-16. Get team by Id			23. Add injury to a player
-					24. Get match by Id
+10. Add team				18. Add match
+11. Delete team				19. Delete match
+12. Add player to a team		20. Play Match
+13. Team sell player			21. Get match result
+14. List all teams			22. List all matches
+15. List all teams by division		23. List all matches for a team
+16. List all players for a team		24. Add injury to a player
+17. Get team by Id			25. Get match by Id
