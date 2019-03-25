@@ -10,6 +10,6 @@
 
         public static int MaxGoalsCount => 10;
 
-        public static int LabelSize => 50;
+        public static int LabelSize => 100;
     }
 }

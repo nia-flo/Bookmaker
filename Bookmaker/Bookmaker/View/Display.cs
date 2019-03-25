@@ -22,7 +22,15 @@ namespace Bookmaker.View
             this.teamService = new TeamService();
             this.matchService = new MatchService();
 
+            SetUpConsole();
+
             Home();
+        }
+
+        private void SetUpConsole()
+        {
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.ForegroundColor = ConsoleColor.Green;
         }
 
         private void Home()
@@ -64,64 +72,64 @@ namespace Bookmaker.View
                     ListAllCoaches();
                     break;
                 case 4:
-                    AddPlayer();
-                    break;
-                case 5:
-                    DeletePlayer();
-                    break;
-                case 6:
-                    ListAllPlayers();
-                    break;
-                case 7:
-                    ListAllPlayersOnSale();
-                    break;
-                case 8:
-                    AddTeam();
-                    break;
-                case 9:
-                    DeleteTeam();
-                    break;
-                case 10:
-                    AddPlayerToATeam();
-                    break;
-                case 11:
-                    TeamSellPlayer();
-                    break;
-                case 12:
-                    ListAllTeams();
-                    break;
-                case 13:
-                    ListAllPlayersForATeam();
-                    break;
-                case 14:
-                    AddMatch();
-                    break;
-                case 15:
-                    DeleteMatch();
-                    break;
-                case 16:
-                    PlayMatch();
-                    break;
-                case 17:
-                    GetMatchResult();
-                    break;
-                case 18:
-                    ListAllMatches();
-                    break;
-                case 19:
-                    ListAllMatchesForATeam();
-                    break;
-                case 20:
-                    AddInjuryToAPlayer();
-                    break;
-                case 21:
                     GetCoachById();
                     break;
-                case 22:
+                case 5:
+                    AddPlayer();
+                    break;
+                case 6:
+                    DeletePlayer();
+                    break;
+                case 7:
+                    ListAllPlayers();
+                    break;
+                case 8:
+                    ListAllPlayersOnSale();
+                    break;
+                case 9:
                     GetPlayerById();
                     break;
-                case 23:
+                case 10:
+                    AddTeam();
+                    break;
+                case 11:
+                    DeleteTeam();
+                    break;
+                case 12:
+                    AddPlayerToATeam();
+                    break;
+                case 13:
+                    TeamSellPlayer();
+                    break;
+                case 14:
+                    ListAllTeams();
+                    break;
+                case 15:
+                    ListAllPlayersForATeam();
+                    break;
+                case 16:
                     GetTeamById();
+                    break;
+                case 17:
+                    AddMatch();
+                    break;
+                case 18:
+                    DeleteMatch();
+                    break;
+                case 19:
+                    PlayMatch();
+                    break;
+                case 20:
+                    GetMatchResult();
+                    break;
+                case 21:
+                    ListAllMatches();
+                    break;
+                case 22:
+                    ListAllMatchesForATeam();
+                    break;
+                case 23:
+                    AddInjuryToAPlayer();
                     break;
                 case 24:
                     GetMatchById();
@@ -136,10 +144,13 @@ namespace Bookmaker.View
 
         private void GetMatchById()
         {
+            Console.WriteLine(Label("GET MATCH BY ID"));
+
             try
             {
                 Console.WriteLine("Id of the match:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 Match match = matchService.GetMatchById(id);
 
@@ -149,14 +160,21 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Match not found.");
             }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
+            }
         }
 
         private void GetTeamById()
         {
+            Console.WriteLine(Label("GET TEAM BY ID"));
+
             try
             {
                 Console.WriteLine("Id of the team:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 Team team = teamService.GetTeamById(id);
 
@@ -166,14 +184,21 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Team not found.");
             }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
+            }
         }
 
         private void GetPlayerById()
         {
+            Console.WriteLine(Label("GET PLAYER BY ID"));
+
             try
             {
                 Console.WriteLine("Id of the player:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 Player player = playerService.GetPlayerById(id);
 
@@ -183,14 +208,21 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Player not found");
             }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
+            }
         }
 
         private void GetCoachById()
         {
+            Console.WriteLine(Label("GET COACH BY ID"));
+
             try
             {
                 Console.WriteLine("Id of the coach:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 Coach coach = coachSevice.GetCoachById(id);
 
@@ -199,6 +231,10 @@ namespace Bookmaker.View
             catch (ArgumentException e)
             {
                 Console.WriteLine("Coach not found.");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -210,8 +246,11 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Id of the player:");
                 int playerId = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
                 Console.WriteLine("Injury:");
                 string injuryName = Console.ReadLine();
+                Console.WriteLine();
 
                 playerService.AddInjury(playerId, injuryName);
 
@@ -221,8 +260,10 @@ namespace Bookmaker.View
             {
                 Console.WriteLine(e.Message);
             }
-
-
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
+            }
         }
 
         private void ListAllMatchesForATeam()
@@ -233,6 +274,7 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Id of the team:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 List<Match> matches = matchService.GetAllForATeam(id);
 
@@ -244,9 +286,7 @@ namespace Bookmaker.View
 
                 foreach (var match in matches)
                 {
-                    Console.WriteLine();
-                    Console.WriteLine(new string('-', 22) + "MATCH" + new string('-', 23));
-                    Console.WriteLine();
+                    Console.WriteLine(this.Buffer("MATCH"));
 
                     Console.WriteLine(match);
                 }
@@ -254,6 +294,10 @@ namespace Bookmaker.View
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -271,9 +315,7 @@ namespace Bookmaker.View
 
             foreach (var match in matches)
             {
-                Console.WriteLine();
-                Console.WriteLine(new string('-', 22) + "MATCH" + new string('-', 23));
-                Console.WriteLine();
+                Console.WriteLine(this.Buffer("MATCH"));
 
                 Console.WriteLine(match);
             }
@@ -287,12 +329,17 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Id of the match:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 Console.WriteLine(matchService.GetMatchResult(id));
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -304,16 +351,23 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Id of the match:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 matchService.PlayMatch(id);
 
                 Console.WriteLine("Match played!");
+                Console.WriteLine();
+
                 Console.WriteLine("Result:");
                 Console.WriteLine(matchService.GetMatchResult(id));
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -325,6 +379,7 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Id of the match:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 matchService.RemoveMatch(id);
 
@@ -333,6 +388,10 @@ namespace Bookmaker.View
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -346,10 +405,14 @@ namespace Bookmaker.View
 
                 Console.WriteLine("Id of the host team:");
                 int hostId = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
                 match.HostTeam = teamService.GetTeamById(hostId);
 
                 Console.WriteLine("Id of the guest team:");
                 int guest = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
                 match.GuestTeam = teamService.GetTeamById(guest);
 
                 matchService.AddMatch(match);
@@ -360,17 +423,22 @@ namespace Bookmaker.View
             {
                 Console.WriteLine(e.Message);
             }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
+            }
         }
 
         private void ListAllPlayersForATeam()
         {
             Console.WriteLine(Label("LIST ALL PLAYERS FOR A TEAM"));
 
-            Console.WriteLine("Id of the team:");
-            int id = int.Parse(Console.ReadLine());
-
             try
             {
+                Console.WriteLine("Id of the team:");
+                int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
                 List<Player> players = teamService.GetAllPlayersForATeam(id);
 
                 if (players.Count == 0)
@@ -381,15 +449,18 @@ namespace Bookmaker.View
 
                 foreach (var team in players)
                 {
+                    Console.WriteLine(this.Buffer("TEAM"));
+
                     Console.WriteLine(team);
-                    Console.WriteLine();
-                    Console.WriteLine(new string('-', 50));
-                    Console.WriteLine();
                 }
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -407,10 +478,9 @@ namespace Bookmaker.View
 
             foreach (var team in teams)
             {
+                Console.WriteLine(this.Buffer("TEAM"));
+
                 Console.WriteLine(team);
-                Console.WriteLine();
-                Console.WriteLine(new string('-', 50));
-                Console.WriteLine();
             }
         }
 
@@ -422,14 +492,21 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Id of the team:");
                 int teamId = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
                 Console.WriteLine("Id of the player:");
                 int playerId = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 teamService.SellPlayer(teamId, playerId);
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -441,14 +518,21 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Id of the team:");
                 int teamId = int.Parse(Console.ReadLine());
-                Console.WriteLine("ID of the player");
+                Console.WriteLine();
+
+                Console.WriteLine("Id of the player");
                 int playerId = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 teamService.AddPlayerToATeam(teamId, playerId);
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -458,8 +542,9 @@ namespace Bookmaker.View
 
             try
             {
-                Console.WriteLine("Id:");
+                Console.WriteLine("Id of the team:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 teamService.DeleteTeam(id);
 
@@ -468,6 +553,10 @@ namespace Bookmaker.View
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -480,10 +569,15 @@ namespace Bookmaker.View
                 Team team = new Team();
                 Console.WriteLine("Name:");
                 team.Name = Console.ReadLine();
+                Console.WriteLine();
+
                 Console.WriteLine("Division:");
                 team.Division = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
                 Console.WriteLine("Budget:");
                 team.Budget = decimal.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 teamService.AddTeam(team);
 
@@ -492,6 +586,10 @@ namespace Bookmaker.View
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -508,11 +606,9 @@ namespace Bookmaker.View
             }
             foreach (var player in playersOnSale)
             {
-                Console.WriteLine(player);
+                Console.WriteLine(this.Buffer("PLAYER"));
 
-                Console.WriteLine();
-                Console.WriteLine(new string('-', 50));
-                Console.WriteLine();
+                Console.WriteLine(player);
             }
         }
 
@@ -530,11 +626,9 @@ namespace Bookmaker.View
 
             foreach (var player in players)
             {
-                Console.WriteLine(player);
+                Console.WriteLine(this.Buffer("PLAYER"));
 
-                Console.WriteLine();
-                Console.WriteLine(new string('-', 50));
-                Console.WriteLine();
+                Console.WriteLine(player);
             }
         }
 
@@ -546,14 +640,19 @@ namespace Bookmaker.View
             {
                 Console.WriteLine("Player Id:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 playerService.DeletePlayer(id);
 
-                Console.WriteLine($"Player with Id {id} deleted successfully!");
+                Console.WriteLine("Player deleted successfully!");
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -566,9 +665,11 @@ namespace Bookmaker.View
                 Player player = new Player();
                 Console.WriteLine("Name:");
                 player.Name = Console.ReadLine();
+                Console.WriteLine();
+
                 Console.WriteLine("Age:");
                 player.Age = int.Parse(Console.ReadLine());
-
+                Console.WriteLine();
 
                 playerService.AddPlayer(player);
 
@@ -577,6 +678,10 @@ namespace Bookmaker.View
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -594,11 +699,9 @@ namespace Bookmaker.View
 
             foreach (var coach in coaches)
             {
-                Console.WriteLine(coach);
+                Console.WriteLine(this.Buffer("COACH"));
 
-                Console.WriteLine();
-                Console.WriteLine(new string('-', 50));
-                Console.WriteLine();
+                Console.WriteLine(coach);
             }
         }
 
@@ -608,16 +711,21 @@ namespace Bookmaker.View
 
             try
             {
-                Console.WriteLine("Coach Id:");
+                Console.WriteLine("Id of the coach:");
                 int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 coachSevice.DeleteCoach(id);
 
-                Console.WriteLine($"Coach with Id {id} deleted successfully!");
+                Console.WriteLine("Coach deleted successfully!");
             }
             catch (ArgumentException e)
             {
                 Console.WriteLine(e.Message);
+            }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
             }
         }
 
@@ -630,8 +738,11 @@ namespace Bookmaker.View
                 Coach coach = new Coach();
                 Console.WriteLine("Name:");
                 coach.Name = Console.ReadLine();
+                Console.WriteLine();
+
                 Console.WriteLine("Age:");
                 coach.Age = int.Parse(Console.ReadLine());
+                Console.WriteLine();
 
                 coachSevice.AddCoach(coach);
 
@@ -641,39 +752,36 @@ namespace Bookmaker.View
             {
                 Console.WriteLine(e.Message);
             }
+            catch (Exception)
+            {
+                Console.WriteLine(SomethingWentWrong());
+            }
         }
 
         private void ShowMenu()
         {
             Console.WriteLine(Label("MENU"));
-            
+
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("0. Exit");
-            sb.AppendLine("1. Add coach");
-            sb.AppendLine("2. Delete coach");
-            sb.AppendLine("3. List all coaches");
-            sb.AppendLine("4. Add player");
-            sb.AppendLine("5. Delete player");
-            sb.AppendLine("6. List all players");
-            sb.AppendLine("7. List all players on sale");
-            sb.AppendLine("8. Add team");
-            sb.AppendLine("9. Delete team");
-            sb.AppendLine("10. Add player to a team");
-            sb.AppendLine("11. Team sell player");
-            sb.AppendLine("12. List all teams");
-            sb.AppendLine("13. List all players for a team");
-            sb.AppendLine("14. Add match");
-            sb.AppendLine("15. Delete match");
-            sb.AppendLine("16. Play Match");
-            sb.AppendLine("17. Get match result");
-            sb.AppendLine("18. List all matches");
-            sb.AppendLine("19. List all matches for a team");
-            sb.AppendLine("20. Add injury to a player");
-            sb.AppendLine("21. Get coach by Id");
-            sb.AppendLine("22. Get player by Id");
-            sb.AppendLine("23. Get team by Id");
-            sb.AppendLine("24. Get match by Id");
+            sb.AppendLine("0. Exit					Player options:");
+            sb.AppendLine();
+            sb.AppendLine("Coach options:				5. Add player");
+            sb.AppendLine("1. Add coach				6. Delete player");
+            sb.AppendLine("2. Delete coach				7. List all players");
+            sb.AppendLine("3. List all coaches			8. List all players on sale");
+            sb.AppendLine("4. Get coach by Id			9. Get player by Id");
+            sb.AppendLine();
+            sb.AppendLine("Team options:				Match options:");
+            sb.AppendLine();
+            sb.AppendLine("10. Add team				17. Add match");
+            sb.AppendLine("11. Delete team				18. Delete match");
+            sb.AppendLine("12. Add player to a team		19. Play Match");
+            sb.AppendLine("13. Team sell player			20. Get match result");
+            sb.AppendLine("14. List all teams			21. List all matches");
+            sb.AppendLine("15. List all players for a team		22. List all matches for a team");
+            sb.AppendLine("16. Get team by Id			23. Add injury to a player");
+            sb.AppendLine("					24. Get match by Id");
 
             Console.WriteLine(sb.ToString().Trim());
         }
@@ -691,6 +799,32 @@ namespace Bookmaker.View
             sb.AppendLine(new string('#', Constants.LabelSize));
 
             return sb.ToString();
+        }
+
+        private string Buffer(string text)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine();
+
+            int before = (Constants.LabelSize - text.Length) / 2;
+            int after = Constants.LabelSize - before;
+            sb.AppendLine(new string('-', before) + text + new string('-', after));
+
+            sb.AppendLine();
+
+            return sb.ToString();
+        }
+
+        private string SomethingWentWrong()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("  ----  							  ----  ");
+            sb.AppendLine("_/O.O\\_	Something went wrong, please try again later	_/O.O\\_");
+            sb.AppendLine("--------							--------");
+
+            return sb.ToString().Trim();
         }
     }
 }

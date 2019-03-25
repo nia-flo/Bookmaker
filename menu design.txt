@@ -1,0 +1,18 @@
+0. Exit					Player options:
+					
+Coach options:				5. Add player
+1. Add coach				6. Delete player
+2. Delete coach				7. List all players
+3. List all coaches			8. List all players on sale
+4. Get coach by Id			9. Get player by Id
+					
+Team options:				Match options:
+
+10. Add team				17. Add match
+11. Delete team				18. Delete match
+12. Add player to a team		19. Play Match
+13. Team sell player			20. Get match result
+14. List all teams			21. List all matches
+15. List all players for a team		22. List all matches for a team
+16. Get team by Id			23. Add injury to a player
+					24. Get match by Id

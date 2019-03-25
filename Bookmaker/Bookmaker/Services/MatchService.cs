@@ -24,12 +24,7 @@ namespace Bookmaker.Services
 
         public void RemoveMatch(int id)
         {
-            Match match = context.Matches.FirstOrDefault(m => m.Id == id);
-
-            if (match == null)
-            {
-                throw Exceptions.InvalidId;
-            }
+            Match match = this.GetMatchById(id);
 
             context.Matches.Remove(match);
 
@@ -38,12 +33,7 @@ namespace Bookmaker.Services
 
         public void PlayMatch(int id)
         {
-            Match match = context.Matches.FirstOrDefault(m => m.Id == id);
-
-            if (match == null)
-            {
-                throw Exceptions.InvalidId;
-            }
+            Match match = this.GetMatchById(id);
 
             Random random = new Random();
             Result result = new Result();
@@ -57,12 +47,7 @@ namespace Bookmaker.Services
 
         public string GetMatchResult(int id)
         {
-            Match match = context.Matches.FirstOrDefault(m => m.Id == id);
-
-            if (match == null)
-            {
-                throw Exceptions.InvalidId;
-            }
+            Match match = this.GetMatchById(id);
 
             if (match.Result == null)
             {

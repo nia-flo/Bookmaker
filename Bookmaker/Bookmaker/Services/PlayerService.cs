@@ -25,12 +25,9 @@ namespace Bookmaker.Services
 
         public void DeletePlayer(int id)
         {
-            if (context.Players.Count(p => p.Id == id) == 0)
-            {
-                throw Exceptions.InvalidId;
-            }
+            Player player = this.GetPlayerById(id);
 
-            context.Players.First(p => p.Id == id).Delete();
+            player.Delete();
 
             context.SaveChanges();
         }
@@ -59,12 +56,7 @@ namespace Bookmaker.Services
 
         public void AddInjury(int playerId, string name)
         {
-            Player player = GetPlayerById(playerId);
-
-            if (player == null)
-            {
-                throw Exceptions.InvalidId;
-            }
+            Player player = this.GetPlayerById(playerId);
 
             Injury injury = context.Injuries.FirstOrDefault(i => i.Name == name);
 

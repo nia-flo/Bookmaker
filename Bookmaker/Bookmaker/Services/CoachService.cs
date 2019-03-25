@@ -23,12 +23,9 @@ namespace Bookmaker.Services
 
         public void DeleteCoach(int id)
         {
-            if (context.Coaches.Count(c => c.Id == id) == 0)
-            {
-                throw Exceptions.InvalidId;
-            }
+            Coach coach = this.GetCoachById(id);
 
-            context.Coaches.First(c => c.Id == id).Delete();
+            coach.Delete();
 
             context.SaveChanges();
         }
