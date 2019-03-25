@@ -54,5 +54,10 @@ namespace Bookmaker.Services
 
             return player;
         }
+
+        public Player GetPlayerById(int id)
+        {
+            return context.Players.FirstOrDefault(p => p.Id == id);
+        }
     }
 }

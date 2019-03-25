@@ -7,5 +7,7 @@
         public static int MaxAge => 28;
 
         public static int DivisionsCount => 3;
+
+        public static int MaxGoalsCount => 10;
     }
 }

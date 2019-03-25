@@ -37,5 +37,10 @@ namespace Bookmaker.Services
         {
             return context.Coaches.Where(c => !c.IsDeleted).ToList();
         }
+
+        public Coach GetCoachById(int id)
+        {
+            return context.Coaches.FirstOrDefault(c => c.Id == id);
+        }
     }
 }

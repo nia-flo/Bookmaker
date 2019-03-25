@@ -11,13 +11,15 @@ namespace Bookmaker.View
         private IInjuryService injuryService;
         private IPlayerService playerService;
         private ITeamService teamService;
+        private IMatchService matchService;
 
-        public Display(ICoachSevice coachSevice, IInjuryService injuryService, IPlayerService playerService, ITeamService teamService)
+        public Display(ICoachSevice coachSevice, IInjuryService injuryService, IPlayerService playerService, ITeamService teamService, IMatchService matchService)
         {
             this.coachSevice = coachSevice;
             this.injuryService = injuryService;
             this.playerService = playerService;
             this.teamService = teamService;
+            this.matchService = matchService;
 
             Home();
         }
@@ -89,12 +91,155 @@ namespace Bookmaker.View
                 case 13:
                     ListAllPlayersForATeam();
                     break;
+                case 14:
+                    AddMatch();
+                    break;
+                case 15:
+                    DeleteMatch();
+                    break;
+                case 16:
+                    PlayMatch();
+                    break;
+                case 17:
+                    GetMatchResult();
+                    break;
+                case 18:
+                    ListAllMatches();
+                    break;
+                case 19:
+                    ListAllMatchesForATeam();
+                    break;
                 default:
                     Console.WriteLine("Invalid option!");
                     break;
             }
 
             return true;
+        }
+
+        private void ListAllMatchesForATeam()
+        {
+            try
+            {
+                Console.WriteLine("Id of the team:");
+                int id = int.Parse(Console.ReadLine());
+
+                List<Match> matches = matchService.GetAllForATeam(id);
+
+                if (matches.Count == 0)
+                {
+                    Console.WriteLine("None");
+                    return;
+                }
+
+                foreach (var match in matches)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine(new string('-', 22) + "MATCH" + new string('-', 23));
+                    Console.WriteLine();
+
+                    Console.WriteLine(match);
+                }
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private void ListAllMatches()
+        {
+            List<Match> matches = matchService.GetAll();
+
+            if (matches.Count == 0)
+            {
+                Console.WriteLine("None");
+                return;
+            }
+
+            foreach (var match in matches)
+            {
+                Console.WriteLine();
+                Console.WriteLine(new string('-', 22) + "MATCH" + new string('-', 23));
+                Console.WriteLine();
+
+                Console.WriteLine(match);
+            }
+        }
+
+        private void GetMatchResult()
+        {
+            try
+            {
+                Console.WriteLine("Id of the match:");
+                int id = int.Parse(Console.ReadLine());
+
+                Console.WriteLine(matchService.GetMatchResult(id));
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private void PlayMatch()
+        {
+            try
+            {
+                Console.WriteLine("Id of the match:");
+                int id = int.Parse(Console.ReadLine());
+
+                matchService.PlayMatch(id);
+
+                Console.WriteLine("Match played!");
+                Console.WriteLine("Result:");
+                Console.WriteLine(matchService.GetMatchResult(id));
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private void DeleteMatch()
+        {
+            try
+            {
+                Console.WriteLine("Id of the match:");
+                int id = int.Parse(Console.ReadLine());
+
+                matchService.RemoveMatch(id);
+
+                Console.WriteLine("Match deleted successfully!");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+
+        private void AddMatch()
+        {
+            try
+            {
+                Match match = new Match();
+
+                Console.WriteLine("Id of the host team:");
+                int hostId = int.Parse(Console.ReadLine());
+                match.HostTeam = teamService.GetTeamById(hostId);
+
+                Console.WriteLine("Id of the guest team:");
+                int guest = int.Parse(Console.ReadLine());
+                match.GuestTeam = teamService.GetTeamById(guest);
+
+                matchService.AddMatch(match);
+
+                Console.WriteLine("Match added successfully!");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         private void ListAllPlayersForATeam()
@@ -372,6 +517,12 @@ namespace Bookmaker.View
             Console.WriteLine("11. Team sell player");
             Console.WriteLine("12. List all teams");
             Console.WriteLine("13. List all players for a team");
+            Console.WriteLine("14. Add match");
+            Console.WriteLine("15. Delete match");
+            Console.WriteLine("16. Play Match");
+            Console.WriteLine("17. Get match result");
+            Console.WriteLine("18. List all matches");
+            Console.WriteLine("19. List all matches for a team");
         }
     }
 }

@@ -14,5 +14,7 @@ namespace Bookmaker.Services
         List<Player> GetAllOnSale();
 
         Player GetPlayerWithId(int id);
+
+        Player GetPlayerById(int id);
     }
 }

@@ -10,5 +10,7 @@ namespace Bookmaker.Services
         void DeleteCoach(int id);
 
         List<Coach> GetAll();
+
+        Coach GetCoachById(int id);
     }
 }

@@ -1,4 +1,6 @@
 IMatchService
 MatchService
 
+delete -> must not delete already deleted entities
+
 Console -> beautify

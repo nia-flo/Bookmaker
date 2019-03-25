@@ -22,5 +22,7 @@ namespace Bookmaker.Data
         public static ArgumentException InvalidId => new ArgumentException("Invalid Id!");
 
         public static ArgumentException NotOnSalePlayer => new ArgumentException("Player is not on sale!");
+
+        public static ArgumentException MatchNotPlayed => new ArgumentException("Match is not played yet!");
     }
 }

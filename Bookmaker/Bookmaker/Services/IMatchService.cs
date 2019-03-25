@@ -16,5 +16,7 @@ namespace Bookmaker.Services
         List<Match> GetAll();
 
         List<Match> GetAllForATeam(int teamId);
+
+        Match GetMatchById(int id);
     }
 }

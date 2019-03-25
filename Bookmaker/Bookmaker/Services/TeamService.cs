@@ -81,5 +81,10 @@ namespace Bookmaker.Services
 
             return context.Teams.First(t => t.Id == teamId).Players.ToList();
         }
+
+        public Team GetTeamById(int id)
+        {
+            return context.Teams.FirstOrDefault(t => t.Id == id);
+        }
     }
 }
