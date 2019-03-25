@@ -51,7 +51,7 @@ namespace Bookmaker.Services
 
             if (match.Result == null)
             {
-                throw Exceptions.MatchNotPlayed;
+                throw new ArgumentException(Exceptions.MatchNotPlayed);
             }
 
             return match.Result.ToString();
@@ -73,7 +73,7 @@ namespace Bookmaker.Services
 
             if (match == null || match.IsDeleted)
             {
-                throw Exceptions.InvalidId;
+                throw new ArgumentException(Exceptions.InvalidId);
             }
 
             return match;

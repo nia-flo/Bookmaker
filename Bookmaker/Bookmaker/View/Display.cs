@@ -29,8 +29,8 @@ namespace Bookmaker.View
 
         private void SetUpConsole()
         {
-            Console.BackgroundColor = ConsoleColor.DarkGreen;
-            Console.ForegroundColor = ConsoleColor.Green;
+            //TODO: Console.BackgroundColor = ConsoleColor.DarkGreen;
+            //TODO: Console.ForegroundColor = ConsoleColor.Green;
         }
 
         private void Home()
@@ -156,7 +156,7 @@ namespace Bookmaker.View
 
                 Console.WriteLine(match);
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 Console.WriteLine("Match not found.");
             }
@@ -180,7 +180,7 @@ namespace Bookmaker.View
 
                 Console.WriteLine(team);
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 Console.WriteLine("Team not found.");
             }
@@ -204,7 +204,7 @@ namespace Bookmaker.View
 
                 Console.WriteLine(player);
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 Console.WriteLine("Player not found");
             }
@@ -228,7 +228,7 @@ namespace Bookmaker.View
 
                 Console.WriteLine(coach);
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
                 Console.WriteLine("Coach not found.");
             }

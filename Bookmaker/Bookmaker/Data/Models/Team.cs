@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 
@@ -39,7 +40,7 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw Exceptions.InvalidPersonName;
+                    throw new ArgumentException(Exceptions.InvalidPersonName);
                 }
             }
         }
@@ -61,7 +62,7 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw Exceptions.InvalidDivision;
+                    throw new ArgumentException(Exceptions.InvalidDivision);
                 }
             }
         }
@@ -79,7 +80,7 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw Exceptions.InvalidBudget;
+                    throw new ArgumentException(Exceptions.InvalidBudget);
                 }
             }
         }

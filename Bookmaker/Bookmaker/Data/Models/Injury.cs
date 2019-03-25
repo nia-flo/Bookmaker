@@ -1,4 +1,6 @@
-﻿namespace Bookmaker.Data.Models
+﻿using System;
+
+namespace Bookmaker.Data.Models
 {
     public class Injury
     {
@@ -17,7 +19,7 @@
                 }
                 else
                 {
-                    throw Exceptions.InvalidInjuryName;
+                    throw new ArgumentException(Exceptions.InvalidInjuryName);
                 }
             }
         }

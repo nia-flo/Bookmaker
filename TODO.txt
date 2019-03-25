@@ -1,6 +1,5 @@
-Exceptions -> string
-
 Console -> beautify
+	!!! color !!!
 
 
 номерче на играч

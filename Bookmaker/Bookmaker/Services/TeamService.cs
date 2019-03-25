@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bookmaker.Data;
 using Bookmaker.Data.Models;
@@ -25,7 +26,7 @@ namespace Bookmaker.Services
         {
             if (context.Teams.Count(t => t.Id == id) == 0)
             {
-                throw Exceptions.InvalidId;
+                throw new ArgumentException(Exceptions.InvalidId);
             }
             
             context.Teams.First(t => t.Id == id).Delete();
@@ -37,14 +38,14 @@ namespace Bookmaker.Services
         {
             if (context.Teams.Count(t => t.Id == teamId) == 0 || context.Players.Count(p => p.Id == playerId) == 0)
             {
-                throw Exceptions.InvalidId;
+                throw new ArgumentException(Exceptions.InvalidId);
             }
 
             Player player = context.Players.First(p => p.Id == playerId);
 
             if (!player.IsOnSale)
             {
-                throw Exceptions.NotOnSalePlayer;
+                throw new ArgumentException(Exceptions.NotOnSalePlayer);
             }
 
             context.Teams.First(t => t.Id == teamId).AddPlayer(player);
@@ -57,7 +58,7 @@ namespace Bookmaker.Services
         {
             if (context.Teams.Count(t => t.Id == teamId) == 0 || context.Players.Count(p => p.Id == playerId) == 0)
             {
-                throw Exceptions.InvalidId;
+                throw new ArgumentException(Exceptions.InvalidId);
             }
 
             Player player = context.Players.First(p => p.Id == playerId);
@@ -76,7 +77,7 @@ namespace Bookmaker.Services
         {
             if (context.Teams.Count(t => t.Id == teamId) == 0)
             {
-                throw Exceptions.InvalidId;
+                throw new ArgumentException(Exceptions.InvalidId);
             }
 
             return context.Teams.First(t => t.Id == teamId).Players.ToList();
@@ -88,7 +89,7 @@ namespace Bookmaker.Services
 
             if (team == null || team.IsDeleted)
             {
-                throw Exceptions.InvalidId;
+                throw new ArgumentException(Exceptions.InvalidId);
             }
 
             return team;

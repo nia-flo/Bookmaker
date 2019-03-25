@@ -1,4 +1,5 @@
-﻿using System.Reflection.Emit;
+﻿using System;
+using System.Reflection.Emit;
 using System.Text;
 
 namespace Bookmaker.Data.Models
@@ -20,7 +21,7 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw Exceptions.InvalidPersonName;
+                    throw new ArgumentException(Exceptions.InvalidPersonName);
                 }
             }
         }
@@ -38,7 +39,7 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw Exceptions.InvalidAge;
+                    throw new ArgumentException(Exceptions.InvalidAge);
                 }
             }
         }

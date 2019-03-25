@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bookmaker.Data;
 using Bookmaker.Data.Models;
@@ -41,7 +42,7 @@ namespace Bookmaker.Services
 
             if (coach == null || coach.IsDeleted == true)
             {
-                throw Exceptions.InvalidId;
+                throw new ArgumentException(Exceptions.InvalidId);
             }
 
             return coach;

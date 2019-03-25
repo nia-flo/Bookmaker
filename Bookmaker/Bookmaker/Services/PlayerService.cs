@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Bookmaker.Data;
 using Bookmaker.Data.Models;
@@ -48,7 +49,7 @@ namespace Bookmaker.Services
 
             if (player == null || player.IsDeleted)
             {
-                throw Exceptions.InvalidId;
+                throw new ArgumentException(Exceptions.InvalidId);
             }
 
             return player;
