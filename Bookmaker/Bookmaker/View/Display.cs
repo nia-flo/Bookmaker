@@ -291,7 +291,7 @@ namespace Bookmaker.View
                 {
                     Console.WriteLine(this.Buffer("MATCH"));
 
-                    Console.WriteLine(match);
+                    Console.WriteLine(match.ToString());
                 }
             }
             catch (ArgumentException e)
@@ -322,7 +322,7 @@ namespace Bookmaker.View
                 {
                     Console.WriteLine(this.Buffer("MATCH"));
 
-                    Console.WriteLine(match);
+                    Console.WriteLine(match.ToString());
                 }
             //}
             //catch (Exception)
@@ -411,19 +411,23 @@ namespace Bookmaker.View
 
             try
             {
-                Match match = new Match();
-
                 Console.WriteLine("Id of the host team:");
                 int hostId = int.Parse(Console.ReadLine());
                 Console.WriteLine();
-                match.HostId = hostId;
-                //match.HostTeam = teamService.GetTeamById(hostId);
+
+                Team hostTeam = teamService.GetTeamById(hostId);
 
                 Console.WriteLine("Id of the guest team:");
                 int guestId = int.Parse(Console.ReadLine());
                 Console.WriteLine();
-                match.GuestId = guestId;
-               // match.GuestTeam = teamService.GetTeamById(guestId);
+
+                Team guestTeam = teamService.GetTeamById(guestId);
+
+                Match match = new Match()
+                {
+                    HostId = hostId,
+                    GuestId = guestId,
+                };
 
                 matchService.AddMatch(match);
 
@@ -461,7 +465,7 @@ namespace Bookmaker.View
                 {
                     Console.WriteLine(this.Buffer("TEAM"));
 
-                    Console.WriteLine(team);
+                    Console.WriteLine(team.ToString());
                 }
             }
             catch (ArgumentException e)
@@ -503,7 +507,7 @@ namespace Bookmaker.View
                 {
                     Console.WriteLine(this.Buffer("TEAM"));
 
-                    Console.WriteLine(team);
+                    Console.WriteLine(team.ToString());
                 }
 
             //}
@@ -531,7 +535,7 @@ namespace Bookmaker.View
                 {
                     Console.WriteLine(this.Buffer("TEAM"));
 
-                    Console.WriteLine(team);
+                    Console.WriteLine(team.ToString());
                 }
             //}
             //catch (Exception)
@@ -671,7 +675,7 @@ namespace Bookmaker.View
                 {
                     Console.WriteLine(this.Buffer("PLAYER"));
 
-                    Console.WriteLine(player);
+                    Console.WriteLine(player.ToString());
                 }
             //}
             //catch (Exception)
@@ -698,7 +702,7 @@ namespace Bookmaker.View
                 {
                     Console.WriteLine(this.Buffer("PLAYER"));
 
-                    Console.WriteLine(player);
+                    Console.WriteLine(player.ToString());
                 }
             //}
             //catch (Exception)
@@ -778,7 +782,7 @@ namespace Bookmaker.View
                 {
                     Console.WriteLine(this.Buffer("COACH"));
 
-                    Console.WriteLine(coach);
+                    Console.WriteLine(coach.ToString());
                 }
             //}
             //catch (Exception)
