@@ -1,5 +1,6 @@
 ﻿using System.Reflection.Metadata;
 using System.Text.RegularExpressions;
+using Bookmaker.Data.Models;
 
 namespace Bookmaker.Data
 {
@@ -20,5 +21,7 @@ namespace Bookmaker.Data
         public static bool IsDivisionValid(int division) => (division >= 1 && division <= Constants.DivisionsCount);
 
         public static bool IsBudgetValid(decimal budget) => budget > 0;
+
+        public static bool CanTeamPlayMatch(Team team) => team.PlayersCount >= Constants.MinPlayersCountForAMatch;
     }
 }

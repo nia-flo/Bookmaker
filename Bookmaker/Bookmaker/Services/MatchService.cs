@@ -27,6 +27,16 @@ namespace Bookmaker.Services
                 throw new ArgumentException(Exceptions.InvalidId);
             }
 
+            if (!Validations.CanTeamPlayMatch(match.HostTeam))
+            {
+                throw new ArgumentException(Exceptions.HostTeamNotCapableForAMatch);
+            }
+
+            if (!Validations.CanTeamPlayMatch(match.GuestTeam))
+            {
+                throw new ArgumentException(Exceptions.GuestTeamNotCapableForAMatch);
+            }
+
             context.Matches.Add(match);
 
             context.SaveChanges();

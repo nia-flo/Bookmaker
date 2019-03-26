@@ -88,6 +88,8 @@ namespace Bookmaker.Data.Models
             }
         }
 
+        public int PlayersCount => this.Players.Count;
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

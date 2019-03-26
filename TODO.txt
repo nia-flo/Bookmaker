@@ -1,4 +1,4 @@
-MinPlayersCountForAMatch -> real number
+Get Players / Coaches -> returns only not deleted items
 
 Console -> beautify
 	!!! color !!!

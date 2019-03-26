@@ -30,5 +30,11 @@ namespace Bookmaker.Data
 
         public static string NotEnoughPlayersGuestTeam =>
             "Guest team does not have enough players to participate in a match! They must be at least {Constants.MinPlayersCountForAMatch}";
+
+        public static string HostTeamNotCapableForAMatch =>
+            $"Host team is not capable for a match - it must have {Constants.MinPlayersCountForAMatch} players or more";
+
+        public static string GuestTeamNotCapableForAMatch =>
+            $"Guest team is not capable for a match - it must have {Constants.MinPlayersCountForAMatch} players or more";
     }
 }
