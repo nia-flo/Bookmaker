@@ -10,10 +10,13 @@ Coach options:
 Team options:				
 					Match options:
 11. Add team				
-12. Delete team				19. Add match
-13. Add player to a team		20. Delete match
-14. Team sell player			21. Play Match
-15. List all teams			22. Get match result
-16. List all teams by division		23. List all matches
-17. List all players for a team		24. List all matches for a team
-18. Get team by Id			25. Get match by Id
+12. Delete team				22. Add match
+13. Add player to a team		23. Delete match
+14. Team sell player			24. Play Match
+15. Add coach to a team			25. Get match result
+16. Remove coach from a team		26. List all matches
+17. List all teams			27. List all matches for a team
+18. List all teams by division		28. Get match by Id
+19. List all players for a team
+20. List all coaches for a team
+21. Get team by Id

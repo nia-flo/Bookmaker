@@ -10,11 +10,13 @@ namespace Bookmaker.Services
     {
         private BookmakerContext context;
         private IPlayerService playerService;
+        private ICoachSevice coachSevice;
 
         public TeamService()
         {
             this.context = new BookmakerContext();
             this.playerService = new PlayerService(context);
+            this.coachSevice = new CoachService(context);
         }
 
         public TeamService(BookmakerContext context)
@@ -77,6 +79,36 @@ namespace Bookmaker.Services
             context.SaveChanges();
         }
 
+        public void AddCoachToATeam(int teamId, int coachId)
+        {
+            Team team = GetTeamById(teamId);
+            Coach coach = coachSevice.GetCoachById(coachId);
+
+            if (team.Coaches.Contains(coach))
+            {
+                throw new ArgumentException(Exceptions.InvalidId);
+            }
+
+            team.AddCoach(coach);
+
+            context.SaveChanges();
+        }
+
+        public void RemoveCoachFromATeam(int teamId, int coachId)
+        {
+            Team team = GetTeamById(teamId);
+            Coach coach = coachSevice.GetCoachById(coachId);
+
+            if (!team.Coaches.Contains(coach))
+            {
+                throw new ArgumentException(Exceptions.InvalidId);
+            }
+
+            team.RemoveCoach(coach);
+
+            context.SaveChanges();
+        }
+
         public List<Team> GetAll()
         {
             return context.Teams.Where(t => !t.IsDeleted).ToList();
@@ -89,12 +121,9 @@ namespace Bookmaker.Services
 
         public List<Player> GetAllPlayersForATeam(int teamId)
         {
-            if (context.Teams.Count(t => t.Id == teamId) == 0)
-            {
-                throw new ArgumentException(Exceptions.InvalidId);
-            }
+            Team team = GetTeamById(teamId);
 
-            return context.Teams.First(t => t.Id == teamId).Players.ToList();
+            return team.Players.ToList();
         }
 
         public Team GetTeamById(int id)
@@ -107,6 +136,13 @@ namespace Bookmaker.Services
             }
 
             return team;
+        }
+
+        public List<Coach> GetAllCoachessForATeam(int teamId)
+        {
+            Team team = GetTeamById(teamId);
+
+            return team.Coaches.ToList();
         }
     }
 }

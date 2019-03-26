@@ -105,36 +105,45 @@ namespace Bookmaker.View
                     TeamSellPlayer();
                     break;
                 case 15:
-                    ListAllTeams();
+                    AddCoachToATeam();
                     break;
                 case 16:
-                    ListAllTeamsByDivision();
+                    RemoveCoachFromATeam();
                     break;
                 case 17:
-                    ListAllPlayersForATeam();
+                    ListAllTeams();
                     break;
                 case 18:
-                    GetTeamById();
+                    ListAllTeamsByDivision();
                     break;
                 case 19:
-                    AddMatch();
+                    ListAllPlayersForATeam();
                     break;
                 case 20:
-                    DeleteMatch();
+                    ListAllCoachesForATeam();
                     break;
                 case 21:
-                    PlayMatch();
+                    GetTeamById();
                     break;
                 case 22:
-                    GetMatchResult();
+                    AddMatch();
                     break;
                 case 23:
-                    ListAllMatches();
+                    DeleteMatch();
                     break;
                 case 24:
-                    ListAllMatchesForATeam();
+                    PlayMatch();
                     break;
                 case 25:
+                    GetMatchResult();
+                    break;
+                case 26:
+                    ListAllMatches();
+                    break;
+                case 27:
+                    ListAllMatchesForATeam();
+                    break;
+                case 28:
                     GetMatchById();
                     break;
                 default:
@@ -143,6 +152,97 @@ namespace Bookmaker.View
             }
 
             return true;
+        }
+
+        private void ListAllCoachesForATeam()
+        {
+            Console.WriteLine(Label("LIST ALL COACHES FOR A TEAM"));
+
+            try
+            {
+                Console.WriteLine("Id of the team:");
+                int id = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
+                List<Coach> coaches = teamService.GetAllCoachessForATeam(id);
+
+                if (coaches.Count == 0)
+                {
+                    Console.WriteLine("None");
+                    return;
+                }
+
+                foreach (var coach in coaches)
+                {
+                    Console.WriteLine(this.Buffer("COACH"));
+
+                    Console.WriteLine(coach.ToString());
+                }
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            //catch (Exception)
+            //{
+            //    Console.WriteLine(SomethingWentWrong());
+            //}
+        }
+
+        private void RemoveCoachFromATeam()
+        {
+            Console.WriteLine(Label("REMOVE COACH FROM A TEAM"));
+
+            try
+            {
+                Console.WriteLine("Id of the team:");
+                int teamId = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
+                Console.WriteLine("Id of the coach:");
+                int coachId = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
+                teamService.RemoveCoachFromATeam(teamId, coachId);
+
+                Console.WriteLine("Coach removed from the team successfully!");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            //catch (Exception)
+            //{
+            //    Console.WriteLine(SomethingWentWrong());
+            //}
+        }
+
+        private void AddCoachToATeam()
+        {
+            Console.WriteLine(Label("ADD COACH TO A TEAM"));
+
+            try
+            {
+                Console.WriteLine("Id of the team:");
+                int teamId = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
+                Console.WriteLine("Id of the coach:");
+                int coachId = int.Parse(Console.ReadLine());
+                Console.WriteLine();
+
+                teamService.AddCoachToATeam(teamId, coachId);
+
+                Console.WriteLine("Coach added to the team successfully!");
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            //catch (Exception)
+            //{
+            //    Console.WriteLine(SomethingWentWrong());
+            //}
         }
 
         private void GetMatchById()
@@ -463,7 +563,7 @@ namespace Bookmaker.View
 
                 foreach (var team in players)
                 {
-                    Console.WriteLine(this.Buffer("TEAM"));
+                    Console.WriteLine(this.Buffer("PLAYER"));
 
                     Console.WriteLine(team.ToString());
                 }
@@ -864,13 +964,16 @@ namespace Bookmaker.View
             sb.AppendLine("Team options:		");
             sb.AppendLine("					Match options:");
             sb.AppendLine("11. Add team				");
-            sb.AppendLine("12. Delete team				19. Add match");
-            sb.AppendLine("13. Add player to a team		20. Delete match");
-            sb.AppendLine("14. Team sell player			21. Play Match");
-            sb.AppendLine("15. List all teams			22. Get match result");
-            sb.AppendLine("16. List all teams by division		23. List all matches");
-            sb.AppendLine("17. List all players for a team		24. List all matches for a team");
-            sb.AppendLine("18. Get team by Id			25. Get match by Id");
+            sb.AppendLine("12. Delete team				22. Add match");
+            sb.AppendLine("13. Add player to a team		23. Delete match");
+            sb.AppendLine("14. Team sell player			24. Play Match");
+            sb.AppendLine("15. Add coach to a team			25. Get match result");
+            sb.AppendLine("16. Remove coach from a team		26. List all matches");
+            sb.AppendLine("17. List all teams			27. List all matches for a team");
+            sb.AppendLine("18. List all teams by division		28. Get match by Id");
+            sb.AppendLine("19. List all players for a team");
+            sb.AppendLine("20. List all coaches for a team");
+            sb.AppendLine("21. Get team by Id");
 
             Console.WriteLine(sb.ToString().Trim());
         }

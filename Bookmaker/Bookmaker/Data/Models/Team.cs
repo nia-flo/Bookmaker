@@ -141,5 +141,15 @@ namespace Bookmaker.Data.Models
         {
             this.Players.Remove(player);
         }
+
+        public void AddCoach(Coach coach)
+        {
+            this.Coaches.Add(coach);
+        }
+
+        public void RemoveCoach(Coach coach)
+        {
+            this.Coaches.Remove(coach);
+        }
     }
 }

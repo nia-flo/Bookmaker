@@ -13,6 +13,10 @@ namespace Bookmaker.Services
 
         void SellPlayer(int teamId, int playerId);
 
+        void AddCoachToATeam(int teamId, int coachId);
+
+        void RemoveCoachFromATeam(int teamId, int coachId);
+
         List<Team> GetAll();
 
         List<Team> GetAllByDivision(int division);
@@ -20,5 +24,7 @@ namespace Bookmaker.Services
         List<Player> GetAllPlayersForATeam(int teamId);
 
         Team GetTeamById(int id);
+
+        List<Coach> GetAllCoachessForATeam(int teamId);
     }
 }
