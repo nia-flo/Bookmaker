@@ -61,5 +61,11 @@ namespace Bookmaker.Data.Models
         {
             this.IsOnSale = false;
         }
+
+        public void SetTeam(int? teamId, Team team)
+        {
+            this.TeamId = teamId;
+            this.Team = team;
+        }
     }
 }

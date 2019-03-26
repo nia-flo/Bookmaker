@@ -9,10 +9,17 @@ namespace Bookmaker.Services
     public class TeamService : ITeamService
     {
         private BookmakerContext context;
+        private IPlayerService playerService;
 
         public TeamService()
         {
             this.context = new BookmakerContext();
+            this.playerService = new PlayerService(context);
+        }
+
+        public TeamService(BookmakerContext context)
+        {
+            this.context = context;
         }
 
         public void AddTeam(Team team)
@@ -24,46 +31,48 @@ namespace Bookmaker.Services
 
         public void DeleteTeam(int id)
         {
-            if (context.Teams.Count(t => t.Id == id) == 0)
+            Team team = GetTeamById(id);
+
+            if (team == null)
             {
                 throw new ArgumentException(Exceptions.InvalidId);
             }
             
-            context.Teams.First(t => t.Id == id).Delete();
+            team.Delete();
 
             context.SaveChanges();
         }
 
         public void AddPlayerToATeam(int teamId, int playerId)
         {
-            if (context.Teams.Count(t => t.Id == teamId) == 0 || context.Players.Count(p => p.Id == playerId) == 0)
-            {
-                throw new ArgumentException(Exceptions.InvalidId);
-            }
-
-            Player player = context.Players.First(p => p.Id == playerId);
+            Team team = GetTeamById(teamId);
+            Player player = playerService.GetPlayerById(playerId);
 
             if (!player.IsOnSale)
             {
                 throw new ArgumentException(Exceptions.NotOnSalePlayer);
             }
 
-            context.Teams.First(t => t.Id == teamId).AddPlayer(player);
-            context.Players.First(p => p.Id == playerId).Buy();
+            team.AddPlayer(player);
+            player.Buy();
+            player.SetTeam(teamId, team);
 
             context.SaveChanges();
         }
 
         public void SellPlayer(int teamId, int playerId)
         {
-            if (context.Teams.Count(t => t.Id == teamId) == 0 || context.Players.Count(p => p.Id == playerId) == 0)
+            Team team = GetTeamById(teamId);
+            Player player = playerService.GetPlayerById(playerId);
+
+            if (player.TeamId != teamId)
             {
                 throw new ArgumentException(Exceptions.InvalidId);
             }
 
-            Player player = context.Players.First(p => p.Id == playerId);
-            context.Teams.First(t => t.Id == teamId).RemovePlayer(player);
-            context.Players.First(p => p.Id == playerId).Sell();
+            team.RemovePlayer(player);
+            player.Sell();
+            player.SetTeam(null, null);
 
             context.SaveChanges();
         }

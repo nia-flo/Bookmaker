@@ -15,6 +15,11 @@ namespace Bookmaker.Services
             this.context = new BookmakerContext();
         }
 
+        public MatchService(BookmakerContext context)
+        {
+            this.context = context;
+        }
+
         public void AddMatch(Match match)
         {
             if (match.HostId == match.GuestId)

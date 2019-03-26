@@ -17,6 +17,11 @@ namespace Bookmaker.Services
             this.injuryService = new InjuryService();
         }
 
+        public PlayerService(BookmakerContext context)
+        {
+            this.context = context;
+        }
+
         public void AddPlayer(Player player)
         {
             context.Players.Add(player);
