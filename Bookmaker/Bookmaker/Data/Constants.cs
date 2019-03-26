@@ -11,5 +11,7 @@
         public static int MaxGoalsCount => 10;
 
         public static int LabelSize => 100;
+
+        public static int MinPlayersCountForAMatch => 5; //TODO: real number
     }
 }

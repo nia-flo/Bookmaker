@@ -1,10 +1,14 @@
-﻿using System.Text;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace Bookmaker.Data.Models
 {
     public class Match : IDeletable
     {
         public int Id { get; set; }
+
+        public virtual ICollection<MatchTeam> MatchTeams { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -13,11 +17,14 @@ namespace Bookmaker.Data.Models
             this.IsDeleted = true;
         }
 
-        public Team HostTeam { get; set; }
+        public int HostId { get; set; }
+        public virtual Team HostTeam { get; set; }
 
-        public Team GuestTeam { get; set; }
+        public int GuestId { get; set; }
+        public virtual Team GuestTeam { get; set; }
 
-        public Result Result { get; set; }
+        public int? ResultId { get; set; }
+        public virtual Result Result { get; set; }
 
         public override string ToString()
         {

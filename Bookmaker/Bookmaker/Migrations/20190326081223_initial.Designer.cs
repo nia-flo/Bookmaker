@@ -4,14 +4,16 @@ using Bookmaker.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bookmaker.Migrations
 {
     [DbContext(typeof(BookmakerContext))]
-    partial class BookmakerContextModelSnapshot : ModelSnapshot
+    [Migration("20190326081223_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,7 +75,7 @@ namespace Bookmaker.Migrations
 
                     b.Property<bool>("IsDeleted");
 
-                    b.Property<int?>("ResultId");
+                    b.Property<int>("ResultId");
 
                     b.HasKey("Id");
 
@@ -182,7 +184,8 @@ namespace Bookmaker.Migrations
 
                     b.HasOne("Bookmaker.Data.Models.Result", "Result")
                         .WithMany()
-                        .HasForeignKey("ResultId");
+                        .HasForeignKey("ResultId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Bookmaker.Data.Models.MatchTeam", b =>

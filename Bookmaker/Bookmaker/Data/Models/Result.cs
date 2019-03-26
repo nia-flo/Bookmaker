@@ -1,11 +1,12 @@
-﻿using System.Text;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace Bookmaker.Data.Models
 {
     public class Result
     {
         public int Id { get; set; }
-
+        
         public int HostGoals { get; set; }
 
         public int GuestGoals { get; set; }

@@ -14,9 +14,12 @@ namespace Bookmaker.Data.Models
             this.IsOnSale = true;
         }
 
-        public bool IsOnSale { get; set; }
+        public int? TeamId { get; set; }
+        public virtual Team Team { get; set; }
 
-        public ICollection<Injury> Injuries { get; set; }
+        public bool IsOnSale { get; set; }
+        
+        public virtual ICollection<Injury> Injuries { get; set; }
 
         public override string ToString()
         {

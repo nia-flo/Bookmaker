@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bookmaker.Migrations
 {
     [DbContext(typeof(BookmakerContext))]
-    [Migration("20190325130622_Initial")]
-    partial class Initial
+    [Migration("20190326082033_initial2")]
+    partial class initial2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,7 +65,11 @@ namespace Bookmaker.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("GuestId");
+
                     b.Property<int?>("GuestTeamId");
+
+                    b.Property<int>("HostId");
 
                     b.Property<int?>("HostTeamId");
 
@@ -82,6 +86,19 @@ namespace Bookmaker.Migrations
                     b.HasIndex("ResultId");
 
                     b.ToTable("Matches");
+                });
+
+            modelBuilder.Entity("Bookmaker.Data.Models.MatchTeam", b =>
+                {
+                    b.Property<int>("MatchId");
+
+                    b.Property<int>("TeamId");
+
+                    b.HasKey("MatchId", "TeamId");
+
+                    b.HasIndex("TeamId");
+
+                    b.ToTable("MatchTeam");
                 });
 
             modelBuilder.Entity("Bookmaker.Data.Models.Player", b =>
@@ -143,7 +160,7 @@ namespace Bookmaker.Migrations
 
             modelBuilder.Entity("Bookmaker.Data.Models.Coach", b =>
                 {
-                    b.HasOne("Bookmaker.Data.Models.Team")
+                    b.HasOne("Bookmaker.Data.Models.Team", "Team")
                         .WithMany("Coaches")
                         .HasForeignKey("TeamId");
                 });
@@ -170,9 +187,22 @@ namespace Bookmaker.Migrations
                         .HasForeignKey("ResultId");
                 });
 
+            modelBuilder.Entity("Bookmaker.Data.Models.MatchTeam", b =>
+                {
+                    b.HasOne("Bookmaker.Data.Models.Team", "Team")
+                        .WithMany("MatchTeams")
+                        .HasForeignKey("MatchId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Bookmaker.Data.Models.Match", "Match")
+                        .WithMany("MatchTeams")
+                        .HasForeignKey("TeamId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("Bookmaker.Data.Models.Player", b =>
                 {
-                    b.HasOne("Bookmaker.Data.Models.Team")
+                    b.HasOne("Bookmaker.Data.Models.Team", "Team")
                         .WithMany("Players")
                         .HasForeignKey("TeamId");
                 });

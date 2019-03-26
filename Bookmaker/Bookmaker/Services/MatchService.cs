@@ -17,6 +17,21 @@ namespace Bookmaker.Services
 
         public void AddMatch(Match match)
         {
+            if (match.HostId== match.GuestId)
+            {
+                throw new ArgumentException(Exceptions.InvalidId);
+            }
+
+            //if (match.HostTeam.Players.Count < Constants.MinPlayersCountForAMatch)
+            //{
+            //    throw new ArgumentException(Exceptions.NotEnoughPlayersHostTeam);
+            //}
+
+            //if (match.GuestTeam.Players.Count < Constants.MinPlayersCountForAMatch)
+            //{
+            //    throw new ArgumentException(Exceptions.NotEnoughPlayersGuestTeam);
+            //}
+
             context.Matches.Add(match);
 
             context.SaveChanges();

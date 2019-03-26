@@ -22,14 +22,23 @@ namespace Bookmaker.Data
             //koi server da izpolzva
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(ConfigurationData.ConnectionString);
+                optionsBuilder.UseSqlServer(ConfigurationData.ConnectionString).UseLazyLoadingProxies();
             }
             base.OnConfiguring(optionsBuilder);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<MatchTeam>()
+                .HasKey(mt => new { mt.MatchId, mt.TeamId });
+            modelBuilder.Entity<MatchTeam>()
+                .HasOne(mt => mt.Match)
+                .WithMany(b => b.MatchTeams)
+                .HasForeignKey(mt => mt.TeamId);
+            modelBuilder.Entity<MatchTeam>()
+                .HasOne(bc => bc.Team)
+                .WithMany(c => c.MatchTeams)
+                .HasForeignKey(bc => bc.MatchId);
         }
     }
 }

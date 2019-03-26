@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Bookmaker.Data.Models
@@ -12,6 +13,8 @@ namespace Bookmaker.Data.Models
             Players = new List<Player>();
             Coaches = new List<Coach>();
         }
+        
+        public virtual ICollection<MatchTeam> MatchTeams { get; set; }
 
         public bool IsDeleted { get; set; }
 
@@ -24,7 +27,7 @@ namespace Bookmaker.Data.Models
 
             this.IsDeleted = true;
         }
-
+        
         public int Id { get; set; }
 
         private string name;
@@ -44,10 +47,10 @@ namespace Bookmaker.Data.Models
                 }
             }
         }
-
-        public ICollection<Player> Players { get; set; }
-
-        public ICollection<Coach> Coaches { get; set; }
+        
+        public virtual ICollection<Player> Players { get; set; }
+        
+        public virtual ICollection<Coach> Coaches { get; set; }
 
         private int division;
         public int Division
@@ -93,20 +96,26 @@ namespace Bookmaker.Data.Models
             sb.AppendLine("Name: " + this.Name);
             sb.AppendLine("Division: " + this.Division);
             sb.AppendLine("Budget: " + this.Budget);
+            sb.AppendLine();
+
             sb.AppendLine("Players:");
+            sb.AppendLine();
             if (this.Players.Count == 0)
             {
                 sb.AppendLine("None");
+                sb.AppendLine();
             }
             else
             {
                 foreach (var player in this.Players)
                 {
                     sb.AppendLine(player.ToString());
+                    sb.AppendLine();
                 }
             }
 
             sb.AppendLine("Coaches:");
+            sb.AppendLine();
             if (this.Coaches.Count == 0)
             {
                 sb.AppendLine("None");
@@ -116,10 +125,11 @@ namespace Bookmaker.Data.Models
                 foreach (var coach in this.Coaches)
                 {
                     sb.AppendLine(coach.ToString());
+                    sb.AppendLine();
                 }
             }
 
-            return sb.ToString();
+            return sb.ToString().Trim();
         }
 
         public void AddPlayer(Player player)

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bookmaker.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -66,9 +66,11 @@ namespace Bookmaker.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     IsDeleted = table.Column<bool>(nullable: false),
+                    HostId = table.Column<int>(nullable: false),
                     HostTeamId = table.Column<int>(nullable: true),
+                    GuestId = table.Column<int>(nullable: false),
                     GuestTeamId = table.Column<int>(nullable: true),
-                    ResultId = table.Column<int>(nullable: true)
+                    ResultId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,7 +92,7 @@ namespace Bookmaker.Migrations
                         column: x => x.ResultId,
                         principalTable: "Results",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -102,8 +104,8 @@ namespace Bookmaker.Migrations
                     Name = table.Column<string>(nullable: true),
                     Age = table.Column<int>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false),
-                    IsOnSale = table.Column<bool>(nullable: false),
-                    TeamId = table.Column<int>(nullable: true)
+                    TeamId = table.Column<int>(nullable: true),
+                    IsOnSale = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -114,6 +116,30 @@ namespace Bookmaker.Migrations
                         principalTable: "Teams",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MatchTeam",
+                columns: table => new
+                {
+                    MatchId = table.Column<int>(nullable: false),
+                    TeamId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MatchTeam", x => new { x.MatchId, x.TeamId });
+                    table.ForeignKey(
+                        name: "FK_MatchTeam_Teams_MatchId",
+                        column: x => x.MatchId,
+                        principalTable: "Teams",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_MatchTeam_Matches_TeamId",
+                        column: x => x.TeamId,
+                        principalTable: "Matches",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -162,6 +188,11 @@ namespace Bookmaker.Migrations
                 column: "ResultId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_MatchTeam_TeamId",
+                table: "MatchTeam",
+                column: "TeamId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Players_TeamId",
                 table: "Players",
                 column: "TeamId");
@@ -176,16 +207,19 @@ namespace Bookmaker.Migrations
                 name: "Injuries");
 
             migrationBuilder.DropTable(
-                name: "Matches");
+                name: "MatchTeam");
 
             migrationBuilder.DropTable(
                 name: "Players");
 
             migrationBuilder.DropTable(
-                name: "Results");
+                name: "Matches");
 
             migrationBuilder.DropTable(
                 name: "Teams");
+
+            migrationBuilder.DropTable(
+                name: "Results");
         }
     }
 }

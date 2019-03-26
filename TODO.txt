@@ -1,3 +1,7 @@
+MinPlayersCountForAMatch -> real number
+
+add player to a team -> not working
+
 Console -> beautify
 	!!! color !!!
 
