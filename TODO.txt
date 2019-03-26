@@ -1,6 +1,7 @@
 MinPlayersCountForAMatch -> real number
 
-add player to a team -> not working
+add coach to a team
+remove coach from a team
 
 Console -> beautify
 	!!! color !!!
