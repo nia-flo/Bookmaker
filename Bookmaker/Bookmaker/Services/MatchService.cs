@@ -17,20 +17,10 @@ namespace Bookmaker.Services
 
         public void AddMatch(Match match)
         {
-            if (match.HostId== match.GuestId)
+            if (match.HostId == match.GuestId)
             {
                 throw new ArgumentException(Exceptions.InvalidId);
             }
-
-            //if (match.HostTeam.Players.Count < Constants.MinPlayersCountForAMatch)
-            //{
-            //    throw new ArgumentException(Exceptions.NotEnoughPlayersHostTeam);
-            //}
-
-            //if (match.GuestTeam.Players.Count < Constants.MinPlayersCountForAMatch)
-            //{
-            //    throw new ArgumentException(Exceptions.NotEnoughPlayersGuestTeam);
-            //}
 
             context.Matches.Add(match);
 
@@ -51,9 +41,11 @@ namespace Bookmaker.Services
             Match match = this.GetMatchById(id);
 
             Random random = new Random();
-            Result result = new Result();
-            result.HostGoals = random.Next(0, Constants.MaxGoalsCount);
-            result.GuestGoals = random.Next(0, Constants.MaxGoalsCount);
+            Result result = new Result()
+            {
+                HostGoals = random.Next(0, Constants.MaxGoalsCount),
+                GuestGoals = random.Next(0, Constants.MaxGoalsCount)
+            };
 
             match.Result = result;
 
@@ -79,7 +71,7 @@ namespace Bookmaker.Services
 
         public List<Match> GetAllForATeam(int teamId)
         {
-            return context.Matches.Where(m => !m.IsDeleted && (m.GuestTeam.Id == teamId || m.HostTeam.Id == teamId)).ToList();
+            return context.Matches.Where(m => !m.IsDeleted && (m.GuestId == teamId || m.HostId == teamId)).ToList();
         }
 
         public Match GetMatchById(int id)

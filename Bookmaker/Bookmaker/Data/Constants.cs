@@ -12,6 +12,6 @@
 
         public static int LabelSize => 100;
 
-        public static int MinPlayersCountForAMatch => 5; //TODO: real number
+        public static int MinPlayersCountForAMatch => 5; //TODO: real number and implementation
     }
 }

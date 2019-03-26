@@ -555,6 +555,8 @@ namespace Bookmaker.View
                 Console.WriteLine();
 
                 teamService.SellPlayer(teamId, playerId);
+
+                Console.WriteLine("Player sold successfully!");
             }
             catch (ArgumentException e)
             {
@@ -581,6 +583,8 @@ namespace Bookmaker.View
                 Console.WriteLine();
 
                 teamService.AddPlayerToATeam(teamId, playerId);
+
+                Console.WriteLine("Player added successfully to the team!");
             }
             catch (ArgumentException e)
             {
