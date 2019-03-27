@@ -25,6 +25,6 @@ namespace Bookmaker.Services
 
         Team GetTeamById(int id);
 
-        List<Coach> GetAllCoachessForATeam(int teamId);
+        List<Coach> GetAllCoachesForATeam(int teamId);
     }
 }

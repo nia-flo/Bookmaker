@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Text;
 
 namespace Bookmaker.Data.Models
@@ -88,7 +89,9 @@ namespace Bookmaker.Data.Models
             }
         }
 
-        public int PlayersCount => this.Players.Count;
+        public int PlayersCount => this.GetPlayers().Count;
+
+        public int CoachesCount => this.GetCoaches().Count;
 
         public override string ToString()
         {
@@ -102,14 +105,14 @@ namespace Bookmaker.Data.Models
 
             sb.AppendLine("Players:");
             sb.AppendLine();
-            if (this.Players.Count == 0)
+            if (this.PlayersCount == 0)
             {
                 sb.AppendLine("None");
                 sb.AppendLine();
             }
             else
             {
-                foreach (var player in this.Players)
+                foreach (var player in this.GetPlayers())
                 {
                     sb.AppendLine(player.ToString());
                     sb.AppendLine();
@@ -118,13 +121,13 @@ namespace Bookmaker.Data.Models
 
             sb.AppendLine("Coaches:");
             sb.AppendLine();
-            if (this.Coaches.Count == 0)
+            if (this.CoachesCount == 0)
             {
                 sb.AppendLine("None");
             }
             else
             {
-                foreach (var coach in this.Coaches)
+                foreach (var coach in this.GetCoaches())
                 {
                     sb.AppendLine(coach.ToString());
                     sb.AppendLine();
@@ -153,5 +156,9 @@ namespace Bookmaker.Data.Models
         {
             this.Coaches.Remove(coach);
         }
+
+        public List<Player> GetPlayers() => this.Players.Where(p => !p.IsDeleted).ToList();
+
+        public List<Coach> GetCoaches() => this.Coaches.Where(c => !c.IsDeleted).ToList();
     }
 }

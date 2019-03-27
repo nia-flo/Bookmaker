@@ -123,7 +123,7 @@ namespace Bookmaker.Services
         {
             Team team = GetTeamById(teamId);
 
-            return team.Players.ToList();
+            return team.GetPlayers();
         }
 
         public Team GetTeamById(int id)
@@ -138,11 +138,11 @@ namespace Bookmaker.Services
             return team;
         }
 
-        public List<Coach> GetAllCoachessForATeam(int teamId)
+        public List<Coach> GetAllCoachesForATeam(int teamId)
         {
             Team team = GetTeamById(teamId);
 
-            return team.Coaches.ToList();
+            return team.GetCoaches();
         }
     }
 }

@@ -164,7 +164,7 @@ namespace Bookmaker.View
                 int id = int.Parse(Console.ReadLine());
                 Console.WriteLine();
 
-                List<Coach> coaches = teamService.GetAllCoachessForATeam(id);
+                List<Coach> coaches = teamService.GetAllCoachesForATeam(id);
 
                 if (coaches.Count == 0)
                 {
