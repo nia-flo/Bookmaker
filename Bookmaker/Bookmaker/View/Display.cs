@@ -45,8 +45,8 @@ namespace Bookmaker.View
             }
 
             Console.WriteLine();
-            Console.WriteLine("Press enter to continue...");
-            string justAnInput = Console.ReadLine();
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
 
             Home();
         }
