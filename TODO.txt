@@ -1,7 +1,3 @@
-Get Players / Coaches -> returns only not deleted items
+Console -> beautify -> !!! color !!!
 
-Console -> beautify
-	!!! color !!!
-
-
-номерче на играч
+!!!!!!! Unit tests !!!!!!!
