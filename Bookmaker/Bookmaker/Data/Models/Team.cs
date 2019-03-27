@@ -103,7 +103,7 @@ namespace Bookmaker.Data.Models
             sb.AppendLine("Budget: " + this.Budget);
             sb.AppendLine();
 
-            sb.AppendLine("Players:");
+            sb.AppendLine(this.PlayersCount + " players:");
             sb.AppendLine();
             if (this.PlayersCount == 0)
             {
@@ -119,7 +119,7 @@ namespace Bookmaker.Data.Models
                 }
             }
 
-            sb.AppendLine("Coaches:");
+            sb.AppendLine(this.CoachesCount + " coaches:");
             sb.AppendLine();
             if (this.CoachesCount == 0)
             {
