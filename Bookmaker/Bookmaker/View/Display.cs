@@ -1,10 +1,12 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Text;
 using Bookmaker.Data;
 using Bookmaker.Data.Models;
 using Bookmaker.Services;
+using Pastel;
 
 namespace Bookmaker.View
 {
@@ -29,8 +31,8 @@ namespace Bookmaker.View
 
         private void SetUpConsole()
         {
-            //TODO: Console.BackgroundColor = ConsoleColor.DarkGreen;
-            //TODO: Console.ForegroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.DarkGreen;
+            Console.ForegroundColor = ConsoleColor.Green;
         }
 
         private void Home()
@@ -45,7 +47,7 @@ namespace Bookmaker.View
             }
 
             Console.WriteLine();
-            Console.WriteLine("Press any key to continue...");
+            Print("Press any key to continue...");
             Console.ReadKey();
 
             Home();
@@ -53,7 +55,7 @@ namespace Bookmaker.View
 
         private bool GetUserInput()
         {
-            Console.WriteLine();
+            Print("");
             int input = int.Parse(Console.ReadLine());
 
             Console.Clear();
@@ -147,7 +149,7 @@ namespace Bookmaker.View
                     GetMatchById();
                     break;
                 default:
-                    Console.WriteLine("Invalid option!");
+                    Print("Invalid option!");
                     break;
             }
 
@@ -156,257 +158,257 @@ namespace Bookmaker.View
 
         private void ListAllCoachesForATeam()
         {
-            Console.WriteLine(Label("LIST ALL COACHES FOR A TEAM"));
+            Print(Label("LIST ALL COACHES FOR A TEAM"));
 
             try
             {
-                Console.WriteLine("Id of the team:");
+                Print("Id of the team:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 List<Coach> coaches = teamService.GetAllCoachesForATeam(id);
 
                 if (coaches.Count == 0)
                 {
-                    Console.WriteLine("None");
+                    Print("None");
                     return;
                 }
 
                 foreach (var coach in coaches)
                 {
-                    Console.WriteLine(this.Buffer("COACH"));
+                    Print(this.Buffer("COACH"));
 
-                    Console.WriteLine(coach.ToString());
+                    Print(coach.ToString());
                 }
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void RemoveCoachFromATeam()
         {
-            Console.WriteLine(Label("REMOVE COACH FROM A TEAM"));
+            Print(Label("REMOVE COACH FROM A TEAM"));
 
             try
             {
-                Console.WriteLine("Id of the team:");
+                Print("Id of the team:");
                 int teamId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
-                Console.WriteLine("Id of the coach:");
+                Print("Id of the coach:");
                 int coachId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 teamService.RemoveCoachFromATeam(teamId, coachId);
 
-                Console.WriteLine("Coach removed from the team successfully!");
+                Print("Coach removed from the team successfully!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void AddCoachToATeam()
         {
-            Console.WriteLine(Label("ADD COACH TO A TEAM"));
+            Print(Label("ADD COACH TO A TEAM"));
 
             try
             {
-                Console.WriteLine("Id of the team:");
+                Print("Id of the team:");
                 int teamId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
-                Console.WriteLine("Id of the coach:");
+                Print("Id of the coach:");
                 int coachId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 teamService.AddCoachToATeam(teamId, coachId);
 
-                Console.WriteLine("Coach added to the team successfully!");
+                Print("Coach added to the team successfully!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void GetMatchById()
         {
-            Console.WriteLine(Label("GET MATCH BY ID"));
+            Print(Label("GET MATCH BY ID"));
 
             try
             {
-                Console.WriteLine("Id of the match:");
+                Print("Id of the match:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 Match match = matchService.GetMatchById(id);
 
-                Console.WriteLine(match);
+                Print(match.ToString());
             }
             catch (ArgumentException)
             {
-                Console.WriteLine("Match not found.");
+                Print("Match not found.");
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void GetTeamById()
         {
-            Console.WriteLine(Label("GET TEAM BY ID"));
+            Print(Label("GET TEAM BY ID"));
 
             try
             {
-                Console.WriteLine("Id of the team:");
+                Print("Id of the team:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 Team team = teamService.GetTeamById(id);
 
-                Console.WriteLine(team);
+                Print(team.ToString());
             }
             catch (ArgumentException)
             {
-                Console.WriteLine("Team not found.");
+                Print("Team not found.");
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void GetPlayerById()
         {
-            Console.WriteLine(Label("GET PLAYER BY ID"));
+            Print(Label("GET PLAYER BY ID"));
 
             try
             {
-                Console.WriteLine("Id of the player:");
+                Print("Id of the player:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 Player player = playerService.GetPlayerById(id);
 
-                Console.WriteLine(player);
+                Print(player.ToString());
             }
             catch (ArgumentException)
             {
-                Console.WriteLine("Player not found");
+                Print("Player not found");
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void GetCoachById()
         {
-            Console.WriteLine(Label("GET COACH BY ID"));
+            Print(Label("GET COACH BY ID"));
 
             try
             {
-                Console.WriteLine("Id of the coach:");
+                Print("Id of the coach:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 Coach coach = coachSevice.GetCoachById(id);
 
-                Console.WriteLine(coach);
+                Print(coach.ToString());
             }
             catch (ArgumentException)
             {
-                Console.WriteLine("Coach not found.");
+                Print("Coach not found.");
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void AddInjuryToAPlayer()
         {
-            Console.WriteLine(Label("ADD INJURY TO A PLAYER"));
+            Print(Label("ADD INJURY TO A PLAYER"));
 
             try
             {
-                Console.WriteLine("Id of the player:");
+                Print("Id of the player:");
                 int playerId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
-                Console.WriteLine("Injury:");
+                Print("Injury:");
                 string injuryName = Console.ReadLine();
-                Console.WriteLine();
+                Print("");
 
                 playerService.AddInjury(playerId, injuryName);
 
-                Console.WriteLine("Injury added successfully!");
+                Print("Injury added successfully!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void ListAllMatchesForATeam()
         {
-            Console.WriteLine(Label("LIST ALL MATCHES FOR A TEAM"));
+            Print(Label("LIST ALL MATCHES FOR A TEAM"));
 
             try
             {
-                Console.WriteLine("Id of the team:");
+                Print("Id of the team:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 List<Match> matches = matchService.GetAllForATeam(id);
 
                 if (matches.Count == 0)
                 {
-                    Console.WriteLine("None");
+                    Print("None");
                     return;
                 }
 
                 foreach (var match in matches)
                 {
-                    Console.WriteLine(this.Buffer("MATCH"));
+                    Print(this.Buffer("MATCH"));
 
-                    Console.WriteLine(match.ToString());
+                    Print(match.ToString());
                 }
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void ListAllMatches()
         {
-            Console.WriteLine(Label("LIST ALL MATCHES"));
+            Print(Label("LIST ALL MATCHES"));
 
             //try
             //{
@@ -414,112 +416,112 @@ namespace Bookmaker.View
 
                 if (matches.Count == 0)
                 {
-                    Console.WriteLine("None");
+                    Print("None");
                     return;
                 }
 
                 foreach (var match in matches)
                 {
-                    Console.WriteLine(this.Buffer("MATCH"));
+                    Print(this.Buffer("MATCH"));
 
-                    Console.WriteLine(match.ToString());
+                    Print(match.ToString());
                 }
             //}
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void GetMatchResult()
         {
-            Console.WriteLine(Label("GET MATCH RESULT"));
+            Print(Label("GET MATCH RESULT"));
 
             try
             {
-                Console.WriteLine("Id of the match:");
+                Print("Id of the match:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
-                Console.WriteLine(matchService.GetMatchResult(id));
+                Print(matchService.GetMatchResult(id));
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void PlayMatch()
         {
-            Console.WriteLine(Label("PLAY MATCH"));
+            Print(Label("PLAY MATCH"));
 
             try
             {
-                Console.WriteLine("Id of the match:");
+                Print("Id of the match:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 matchService.PlayMatch(id);
 
-                Console.WriteLine("Match played!");
-                Console.WriteLine();
+                Print("Match played!");
+                Print("");
 
-                Console.WriteLine("Result:");
-                Console.WriteLine(matchService.GetMatchResult(id));
+                Print("Result:");
+                Print(matchService.GetMatchResult(id));
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void DeleteMatch()
         {
-            Console.WriteLine(Label("DELETE MATCH"));
+            Print(Label("DELETE MATCH"));
 
             try
             {
-                Console.WriteLine("Id of the match:");
+                Print("Id of the match:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 matchService.RemoveMatch(id);
 
-                Console.WriteLine("Match deleted successfully!");
+                Print("Match deleted successfully!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void AddMatch()
         {
-            Console.WriteLine(Label("ADD MATCH"));
+            Print(Label("ADD MATCH"));
 
             try
             {
-                Console.WriteLine("Id of the host team:");
+                Print("Id of the host team:");
                 int hostId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 Team hostTeam = teamService.GetTeamById(hostId);
 
-                Console.WriteLine("Id of the guest team:");
+                Print("Id of the guest team:");
                 int guestId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 Team guestTeam = teamService.GetTeamById(guestId);
 
@@ -531,66 +533,66 @@ namespace Bookmaker.View
 
                 matchService.AddMatch(match);
 
-                Console.WriteLine("Match added successfully!");
+                Print("Match added successfully!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void ListAllPlayersForATeam()
         {
-            Console.WriteLine(Label("LIST ALL PLAYERS FOR A TEAM"));
+            Print(Label("LIST ALL PLAYERS FOR A TEAM"));
 
             try
             {
-                Console.WriteLine("Id of the team:");
+                Print("Id of the team:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 List<Player> players = teamService.GetAllPlayersForATeam(id);
 
                 if (players.Count == 0)
                 {
-                    Console.WriteLine("None");
+                    Print("None");
                     return;
                 }
 
                 foreach (var team in players)
                 {
-                    Console.WriteLine(this.Buffer("PLAYER"));
+                    Print(this.Buffer("PLAYER"));
 
-                    Console.WriteLine(team.ToString());
+                    Print(team.ToString());
                 }
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void ListAllTeamsByDivision()
         {
-            Console.WriteLine(Label("LIST ALL TEAMS FOR A DIVISION"));
+            Print(Label("LIST ALL TEAMS FOR A DIVISION"));
 
             //try
             //{
-                Console.WriteLine("Division:");
+                Print("Division:");
                 int division = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 if (!Validations.IsDivisionValid(division))
                 {
-                    Console.WriteLine($"Invalid division - it must be between 1 and {Constants.DivisionsCount}!");
+                    Print($"Invalid division - it must be between 1 and {Constants.DivisionsCount}!");
 
                     return;
                 }
@@ -599,27 +601,27 @@ namespace Bookmaker.View
 
                 if (teams.Count == 0)
                 {
-                    Console.WriteLine("None");
+                    Print("None");
                     return;
                 }
 
                 foreach (var team in teams)
                 {
-                    Console.WriteLine(this.Buffer("TEAM"));
+                    Print(this.Buffer("TEAM"));
 
-                    Console.WriteLine(team.ToString());
+                    Print(team.ToString());
                 }
 
             //}
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void ListAllTeams()
         {
-            Console.WriteLine(Label("LIST ALL TEAMS"));
+            Print(Label("LIST ALL TEAMS"));
 
             //try
             //{
@@ -627,139 +629,139 @@ namespace Bookmaker.View
 
                 if (teams.Count == 0)
                 {
-                    Console.WriteLine("None");
+                    Print("None");
                     return;
                 }
 
                 foreach (var team in teams)
                 {
-                    Console.WriteLine(this.Buffer("TEAM"));
+                    Print(this.Buffer("TEAM"));
 
-                    Console.WriteLine(team.ToString());
+                    Print(team.ToString());
                 }
             //}
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void TeamSellPlayer()
         {
-            Console.WriteLine(Label("TEAM SELL PLAYER"));
+            Print(Label("TEAM SELL PLAYER"));
 
             try
             {
-                Console.WriteLine("Id of the team:");
+                Print("Id of the team:");
                 int teamId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
-                Console.WriteLine("Id of the player:");
+                Print("Id of the player:");
                 int playerId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 teamService.SellPlayer(teamId, playerId);
 
-                Console.WriteLine("Player sold successfully!");
+                Print("Player sold successfully!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void AddPlayerToATeam()
         {
-            Console.WriteLine(Label("ADD PLAYER TO A TEAM"));
+            Print(Label("ADD PLAYER TO A TEAM"));
 
             try
             {
-                Console.WriteLine("Id of the team:");
+                Print("Id of the team:");
                 int teamId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
-                Console.WriteLine("Id of the player");
+                Print("Id of the player");
                 int playerId = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 teamService.AddPlayerToATeam(teamId, playerId);
 
-                Console.WriteLine("Player added successfully to the team!");
+                Print("Player added successfully to the team!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void DeleteTeam()
         {
-            Console.WriteLine(Label("DELETE TEAM"));
+            Print(Label("DELETE TEAM"));
 
             try
             {
-                Console.WriteLine("Id of the team:");
+                Print("Id of the team:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 teamService.DeleteTeam(id);
 
-                Console.WriteLine("Team deleted successfully");
+                Print("Team deleted successfully");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void AddTeam()
         {
-            Console.WriteLine(Label("ADD TEAM"));
+            Print(Label("ADD TEAM"));
 
             try
             {
                 Team team = new Team();
-                Console.WriteLine("Name:");
+                Print("Name:");
                 team.Name = Console.ReadLine();
-                Console.WriteLine();
+                Print("");
 
-                Console.WriteLine("Division:");
+                Print("Division:");
                 team.Division = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
-                Console.WriteLine("Budget:");
+                Print("Budget:");
                 team.Budget = decimal.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 teamService.AddTeam(team);
 
-                Console.WriteLine("Team added successfully");
+                Print("Team added successfully");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void ListAllPlayersOnSale()
         {
-            Console.WriteLine(Label("LIST ALL PLAYERS ON SALE"));
+            Print(Label("LIST ALL PLAYERS ON SALE"));
 
             //try
             //{
@@ -767,26 +769,26 @@ namespace Bookmaker.View
 
                 if (playersOnSale.Count == 0)
                 {
-                    Console.WriteLine("None");
+                    Print("None");
                     return;
                 }
 
                 foreach (var player in playersOnSale)
                 {
-                    Console.WriteLine(this.Buffer("PLAYER"));
+                    Print(this.Buffer("PLAYER"));
 
-                    Console.WriteLine(player.ToString());
+                    Print(player.ToString());
                 }
             //}
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void ListAllPlayers()
         {
-            Console.WriteLine(Label("LIST ALL PLAYERS"));
+            Print(Label("LIST ALL PLAYERS"));
 
             //try
             //{
@@ -794,79 +796,79 @@ namespace Bookmaker.View
 
                 if (players.Count == 0)
                 {
-                    Console.WriteLine("None");
+                    Print("None");
                     return;
                 }
 
                 foreach (var player in players)
                 {
-                    Console.WriteLine(this.Buffer("PLAYER"));
+                    Print(this.Buffer("PLAYER"));
 
-                    Console.WriteLine(player.ToString());
+                    Print(player.ToString());
                 }
             //}
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void DeletePlayer()
         {
-            Console.WriteLine(Label("DELETE PLAYER"));
+            Print(Label("DELETE PLAYER"));
 
             try
             {
-                Console.WriteLine("Player Id:");
+                Print("Player Id:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 playerService.DeletePlayer(id);
 
-                Console.WriteLine("Player deleted successfully!");
+                Print("Player deleted successfully!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void AddPlayer()
         {
-            Console.WriteLine(Label("ADD PLAYER"));
+            Print(Label("ADD PLAYER"));
 
             try
             {
                 Player player = new Player();
-                Console.WriteLine("Name:");
+                Print("Name:");
                 player.Name = Console.ReadLine();
-                Console.WriteLine();
+                Print("");
 
-                Console.WriteLine("Age:");
+                Print("Age:");
                 player.Age = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 playerService.AddPlayer(player);
 
-                Console.WriteLine("Player added successfully!");
+                Print("Player added successfully!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void ListAllCoaches()
         {
-            Console.WriteLine(Label("LIST ALL COACHES"));
+            Print(Label("LIST ALL COACHES"));
 
             //try
             //{
@@ -874,20 +876,20 @@ namespace Bookmaker.View
 
                 if (coaches.Count == 0)
                 {
-                    Console.WriteLine("None");
+                    Print("None");
                     return;
                 }
 
                 foreach (var coach in coaches)
                 {
-                    Console.WriteLine(this.Buffer("COACH"));
+                    Print(this.Buffer("COACH"));
 
-                    Console.WriteLine(coach.ToString());
+                    Print(coach.ToString());
                 }
             //}
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
 
 
@@ -895,60 +897,60 @@ namespace Bookmaker.View
 
         private void DeleteCoach()
         {
-            Console.WriteLine(Label("DELETE COACH"));
+            Print(Label("DELETE COACH"));
 
             try
             {
-                Console.WriteLine("Id of the coach:");
+                Print("Id of the coach:");
                 int id = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 coachSevice.DeleteCoach(id);
 
-                Console.WriteLine("Coach deleted successfully!");
+                Print("Coach deleted successfully!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void AddCoach()
         {
-            Console.WriteLine(Label("ADD COACH"));
+            Print(Label("ADD COACH"));
 
             try
             {
                 Coach coach = new Coach();
-                Console.WriteLine("Name:");
+                Print("Name:");
                 coach.Name = Console.ReadLine();
-                Console.WriteLine();
+                Print("");
 
-                Console.WriteLine("Age:");
+                Print("Age:");
                 coach.Age = int.Parse(Console.ReadLine());
-                Console.WriteLine();
+                Print("");
 
                 coachSevice.AddCoach(coach);
 
-                Console.WriteLine("Coach added successfully!");
+                Print("Coach added successfully!");
             }
             catch (ArgumentException e)
             {
-                Console.WriteLine(e.Message);
+                Print(e.Message);
             }
             //catch (Exception)
             //{
-            //    Console.WriteLine(SomethingWentWrong());
+            //    Print(SomethingWentWrong());
             //}
         }
 
         private void ShowMenu()
         {
-            Console.WriteLine(Label("MENU"));
+            Print(Label("MENU"));
 
             StringBuilder sb = new StringBuilder();
 
@@ -975,7 +977,7 @@ namespace Bookmaker.View
             sb.AppendLine("20. List all coaches for a team");
             sb.AppendLine("21. Get team by Id");
 
-            Console.WriteLine(sb.ToString().Trim());
+            Print(sb.ToString().Trim());
         }
 
         private string Label(string text)
@@ -1017,6 +1019,12 @@ namespace Bookmaker.View
             sb.AppendLine("--------							--------");
 
             return sb.ToString().TrimEnd();
+        }
+
+        private void Print(string text)
+        {
+            //Console.WriteLine(text.Pastel("#98FB98"));
+            Console.WriteLine(text);
         }
     }
 }
