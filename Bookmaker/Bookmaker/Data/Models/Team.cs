@@ -44,7 +44,7 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw new ArgumentException(Exceptions.InvalidPersonName);
+                    throw new ArgumentException(Exceptions.InvalidTeamName);
                 }
             }
         }
