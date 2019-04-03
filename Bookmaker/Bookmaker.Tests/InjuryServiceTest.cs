@@ -26,12 +26,7 @@ namespace Tests
             var injuryService = new InjuryService(mockContext.Object);
 
             //Act
-            Injury injury = new Injury()
-            {
-                id = 2,
-                Name = "Name"
-            };
-            injuryService.AddInjury(injury);
+            injuryService.AddInjury("Name");
 
             //Assert
             InjurySet.Verify(m => m.Add(It.IsAny<Injury>()), Times.Once());
