@@ -8,6 +8,8 @@ namespace Bookmaker.Data.Models
         public int Id { get; set; }
 
         private string name;
+        public int id;
+
         public string Name
         {
             get => this.name;

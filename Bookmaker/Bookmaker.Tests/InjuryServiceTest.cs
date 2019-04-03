@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace Tests
 {
-    public class PlayerServiceTests
+    public class InjuryServiceTest
     {
         [SetUp]
         public void Setup()
@@ -15,26 +15,26 @@ namespace Tests
         }
 
         [Test]
-        public void AddPlayer_Saves_Player()
+        public void AddInjury_Saves_Injury()
         {
             //Arrange
-            var playerSet = new Mock<DbSet<Player>>();
+            var InjurySet = new Mock<DbSet<Injury>>();
 
             var mockContext = new Mock<BookmakerContext>();
-            mockContext.Setup(m => m.Players).Returns(playerSet.Object);
+            mockContext.Setup(m => m.Injuries).Returns(InjurySet.Object);
 
-            var playerService = new PlayerService(mockContext.Object);
+            var injuryService = new InjuryService(mockContext.Object);
 
             //Act
-            Player player = new Player()
+            Injury injury = new Injury()
             {
-                Age = 20,
+                id = 2,
                 Name = "Name"
             };
-            playerService.AddPlayer(player);
+            injuryService.AddInjury(injury);
 
             //Assert
-            playerSet.Verify(m => m.Add(It.IsAny<Player>()), Times.Once());
+            InjurySet.Verify(m => m.Add(It.IsAny<Injury>()), Times.Once());
             mockContext.Verify(m => m.SaveChanges(), Times.Once());
         }
     }

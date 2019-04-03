@@ -1,4 +1,5 @@
-﻿using Bookmaker.Data;
+﻿using System;
+using Bookmaker.Data;
 using Bookmaker.Data.Models;
 
 namespace Bookmaker.Services
@@ -25,6 +26,11 @@ namespace Bookmaker.Services
             });
 
             context.SaveChanges();
+        }
+
+        public void AddInjury(Injury injury)
+        {
+            throw new NotImplementedException();
         }
     }
 }
