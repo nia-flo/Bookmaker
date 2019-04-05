@@ -4,7 +4,7 @@
     {
         public static int MinAge => 18;
 
-        public static int MaxAge => 50;
+        public static int MaxAge => 60;
 
         public static int DivisionsCount => 3;
 
