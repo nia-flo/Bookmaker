@@ -11,11 +11,11 @@ namespace Bookmaker.Services
         private BookmakerContext context;
         private IInjuryService injuryService;
 
-        public PlayerService()
-        {
-            this.context = new BookmakerContext();
-            this.injuryService = new InjuryService();
-        }
+        //public PlayerService()
+        //{
+        //    this.context = new BookmakerContext();
+        //    this.injuryService = new InjuryService();
+        //}
 
         public PlayerService(BookmakerContext context)
         {

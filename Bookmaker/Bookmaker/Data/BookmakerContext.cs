@@ -13,8 +13,6 @@ namespace Bookmaker.Data
 
         public virtual DbSet<Match> Matches { get; set; }
 
-        public virtual DbSet<Result> Results { get; set; }
-
         public virtual DbSet<Team> Teams { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

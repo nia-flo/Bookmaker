@@ -10,7 +10,7 @@ namespace Bookmaker
     {
         static void Main(string[] args)
         {
-            Display display = new Display();
+            Display display = new Display(new BookmakerContext());
         }
     }
 }

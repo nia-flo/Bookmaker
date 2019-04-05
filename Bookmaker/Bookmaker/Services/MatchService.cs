@@ -10,10 +10,10 @@ namespace Bookmaker.Services
     {
         private BookmakerContext context;
 
-        public MatchService()
-        {
-            this.context = new BookmakerContext();
-        }
+        //public MatchService()
+        //{
+        //    this.context = new BookmakerContext();
+        //}
 
         public MatchService(BookmakerContext context)
         {
@@ -46,7 +46,7 @@ namespace Bookmaker.Services
         {
             Match match = this.GetMatchById(id);
 
-            context.Matches.Remove(match);
+            match.IsDeleted = true;
 
             context.SaveChanges();
         }

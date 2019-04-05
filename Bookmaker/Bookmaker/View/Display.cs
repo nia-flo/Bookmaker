@@ -17,12 +17,12 @@ namespace Bookmaker.View
         private ITeamService teamService;
         private IMatchService matchService;
 
-        public Display()
+        public Display(BookmakerContext context)
         {
-            this.coachSevice = new CoachService();
-            this.playerService = new PlayerService();
-            this.teamService = new TeamService();
-            this.matchService = new MatchService();
+            this.coachSevice = new CoachService(context);
+            this.playerService = new PlayerService(context);
+            this.teamService = new TeamService(context);
+            this.matchService = new MatchService(context);
 
             SetUpConsole();
 
@@ -536,7 +536,9 @@ namespace Bookmaker.View
                 Match match = new Match()
                 {
                     HostId = hostId,
+                    HostTeam = hostTeam,
                     GuestId = guestId,
+                    GuestTeam = guestTeam
                 };
 
                 matchService.AddMatch(match);
@@ -547,9 +549,10 @@ namespace Bookmaker.View
             {
                 Print(e.Message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Print(SomethingWentWrong());
+                //Print(SomethingWentWrong());
+                Console.WriteLine(ex.Message);
             }
         }
 

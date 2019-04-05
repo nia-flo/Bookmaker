@@ -10,10 +10,10 @@ namespace Bookmaker.Services
     {
         private BookmakerContext context;
 
-        public CoachService()
-        {
-            this.context = new BookmakerContext();
-        }
+        //public CoachService()
+        //{
+        //    this.context = new BookmakerContext();
+        //}
 
         public CoachService(BookmakerContext context)
         {

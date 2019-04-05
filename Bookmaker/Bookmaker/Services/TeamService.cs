@@ -12,16 +12,18 @@ namespace Bookmaker.Services
         private IPlayerService playerService;
         private ICoachSevice coachSevice;
 
-        public TeamService()
-        {
-            this.context = new BookmakerContext();
-            this.playerService = new PlayerService(context);
-            this.coachSevice = new CoachService(context);
-        }
+        //public TeamService()
+        //{
+        //    this.context = new BookmakerContext();
+        //    this.playerService = new PlayerService(context);
+        //    this.coachSevice = new CoachService(context);
+        //}
 
         public TeamService(BookmakerContext context)
         {
             this.context = context;
+            this.playerService = new PlayerService(context);
+            this.coachSevice = new CoachService(context);
         }
 
         public void AddTeam(Team team)

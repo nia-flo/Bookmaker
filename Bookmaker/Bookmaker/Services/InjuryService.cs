@@ -8,10 +8,10 @@ namespace Bookmaker.Services
     {
         private BookmakerContext context;
 
-        public InjuryService()
-        {
-            this.context = new BookmakerContext();
-        }
+        //public InjuryService()
+        //{
+        //    this.context = new BookmakerContext();
+        //}
 
         public InjuryService(BookmakerContext context)
         {
@@ -26,11 +26,6 @@ namespace Bookmaker.Services
             });
 
             context.SaveChanges();
-        }
-
-        public void AddInjury(Injury injury)
-        {
-            throw new NotImplementedException();
         }
     }
 }
