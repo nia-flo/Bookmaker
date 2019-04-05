@@ -12,6 +12,6 @@
 
         public static int LabelSize => 100;
 
-        public static int MinPlayersCountForAMatch => 11;
+        public static int MinPlayersCountForAMatch => 12;
     }
 }

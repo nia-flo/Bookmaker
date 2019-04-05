@@ -9,4 +9,6 @@ INSERT INTO [dbo].[Coaches]([Name], [Age], [IsDeleted], [TeamId])
 			('Unai Emery', 47, 0, 2),
 			('Juan Carlos Carcedo', 45, 0, 2),
 			('Steve Bould', 56, 0, 2),
-			('Pablo Villa', 42, 0, 2);
+			('Pablo Villa', 42, 0, 2),
+			
+			('Claudio Ranieri', 67, 0, 3);
