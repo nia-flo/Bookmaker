@@ -373,9 +373,10 @@ namespace Bookmaker.View
             {
                 Print(e.Message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Print(SomethingWentWrong());
+                //Print(SomethingWentWrong());
+                Console.WriteLine(ex.Message);
             }
         }
 

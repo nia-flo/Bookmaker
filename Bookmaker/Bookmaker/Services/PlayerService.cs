@@ -20,6 +20,7 @@ namespace Bookmaker.Services
         public PlayerService(BookmakerContext context)
         {
             this.context = context;
+            this.injuryService = new InjuryService(context);
         }
 
         public void AddPlayer(Player player)
@@ -65,7 +66,7 @@ namespace Bookmaker.Services
             Player player = this.GetPlayerById(playerId);
 
             Injury injury = context.Injuries.FirstOrDefault(i => i.Name == name);
-
+            
             if (injury == null)
             {
                 injuryService.AddInjury(name);
