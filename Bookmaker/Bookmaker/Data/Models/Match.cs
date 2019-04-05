@@ -7,8 +7,6 @@ namespace Bookmaker.Data.Models
 {
     public class Match : IDeletable
     {
-        private ITeamService teamService;
-
         public int Id { get; set; }
 
         public virtual ICollection<MatchTeam> MatchTeams { get; set; }

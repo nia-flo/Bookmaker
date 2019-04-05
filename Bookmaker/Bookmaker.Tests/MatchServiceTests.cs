@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using Bookmaker.Data;
+﻿using Bookmaker.Data;
 using Bookmaker.Data.Models;
 using Bookmaker.Services;
 using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Match = Bookmaker.Data.Models.Match;
 
 namespace Tests
