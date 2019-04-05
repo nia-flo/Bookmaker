@@ -1,8 +1,7 @@
 ﻿USE [Bookmaker];
 
 INSERT INTO [dbo].[Players]([Name], [Age], [IsDeleted], [IsOnSale], [TeamId])
-	VALUES	('Ivan', 20, 0, 0, 1),
-			('Marc-Andre ter Stegen', 26, 0, 0, 1),
+	VALUES	('Marc-Andre ter Stegen', 26, 0, 0, 1),
 			('Nelson Semedo', 25, 0, 0, 1),
 			('Nelson Semedo', 25, 0, 0, 1),
 			('Gerard Pique', 32, 0, 0, 1),
@@ -25,4 +24,30 @@ INSERT INTO [dbo].[Players]([Name], [Age], [IsDeleted], [IsOnSale], [TeamId])
 			('CCarles Aleñá', 21, 0, 0, 1),
 			('CArturo Vidal', 31, 0, 0, 1),
 			('CSamuel Umtiti', 25, 0, 0, 1),
-			('Thomas Vermaelen', 33, 0, 0, 1);
+			('Thomas Vermaelen', 33, 0, 0, 1),
+			
+			('Petr Czech', 36, 0, 0, 2),
+			('Hector Bellerin', 24, 0, 0, 2),
+			('Mohamed Elneny', 26, 0, 0, 2),
+			('Sokratis Papastathopoulos', 30, 0, 0, 2),
+			('Laurent Koscielny', 33, 0, 0, 2),
+			('Henrikh Mkhitaryan', 30, 0, 0, 2),
+			('Aaron Ramsey', 28, 0, 0, 2),
+			('Alexandre Lacazette', 27, 0, 0, 2),
+			('Mesut Ozil', 30, 0, 0, 2),
+			('Lucas Torreira', 23, 0, 0, 2),
+			('Stephan Lichtsteiner', 35, 0, 0, 2),
+			('Stephan Lichtsteiner', 29, 0, 0, 2),
+			('Ainsley Maitland-Niles', 21, 0, 0, 2),
+			('Rob Holding', 23, 0, 0, 2),
+			('Alex Iwobi', 22, 0, 0, 2),
+			('Nacho Monreal', 33, 0, 0, 2),
+			('Bernd Leno', 27, 0, 0, 2),
+			('Shkodran Mustafi', 26, 0, 0, 2),
+			('Denis Suarez', 25, 0, 0, 2),
+			('Danny Welbeck', 28, 0, 0, 2),
+			('Carl Jenkinson', 27, 0, 0, 2),
+			('Konstantinos Mavropanos', 21, 0, 0, 2),
+			('Matteo Guendouzi', 19, 0, 0, 2),
+			('Sead Kolašinac', 25, 0, 0, 2),
+			('Granit Xhaka', 26, 0, 0, 2);
