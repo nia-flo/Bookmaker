@@ -6,6 +6,14 @@ using Bookmaker.Data.Models;
 
 namespace Bookmaker.Services
 {
+    /*
+        The MatchService class
+        Contains all methods bound to the match
+    */
+    /// <summary>
+    /// The <c>MatchService</c> class.
+    /// Contains all methods bound to the match.
+    /// </summary>
     public class MatchService : IMatchService
     {
         private BookmakerContext context;
@@ -16,12 +24,25 @@ namespace Bookmaker.Services
         //    this.context = new BookmakerContext();
         //}
 
+        // Constructor
+        /// <summary>
+        /// Initializes a new instance of <c>MatchService</c> with parameter <paramref name="context"/>.
+        /// </summary>
+        /// <param name="context">A BookmakerContext.</param>
         public MatchService(BookmakerContext context)
         {
             this.context = context;
             this.resultService = new ResultService(context);
         }
 
+        // Adds a match to the DBContext
+        /// <summary>
+        /// Adds <paramref name="match"/> to the DBContext.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="match">A Match.</param>
         public void AddMatch(Match match)
         {
             if (match.HostId == match.GuestId)
@@ -44,6 +65,17 @@ namespace Bookmaker.Services
             context.SaveChanges();
         }
 
+        // Removes a match
+        /// <summary>
+        /// Removes a match by <paramref name="id"/>.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <remarks>
+        /// <para>The match is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+        /// </remarks>
+        /// <param name="id">An integer.</param>
         public void RemoveMatch(int id)
         {
             Match match = this.GetMatchById(id);
@@ -53,6 +85,14 @@ namespace Bookmaker.Services
             context.SaveChanges();
         }
 
+        // Generates a result for a match
+        /// <summary>
+        /// Generates a result for a match with concrete <paramref name="id"/>.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="id">An integer.</param>
         public void PlayMatch(int id)
         {
             Match match = this.GetMatchById(id);
@@ -77,6 +117,14 @@ namespace Bookmaker.Services
             context.SaveChanges();
         }
 
+        // Gets the result for a match
+        /// <summary>
+        /// Gets the result for a match with concrete <paramref name="id"/>.
+        /// </summary>
+        /// <returns>
+        /// A string with the result
+        /// </returns>
+        /// <param name="id">An integer.</param>
         public string GetMatchResult(int id)
         {
             Match match = this.GetMatchById(id);
@@ -89,16 +137,39 @@ namespace Bookmaker.Services
             return match.Result.ToString();
         }
 
+        // Gets all matches
+        /// <summary>
+        /// Gets all matches.
+        /// </summary>
+        /// <returns>
+        /// A List with all matches
+        /// </returns>
         public List<Match> GetAll()
         {
             return context.Matches.Where(m => !m.IsDeleted).ToList();
         }
 
+        // Gets all matches where concrete team is playing
+        /// <summary>
+        /// Gets all matches where concrete team with <paramref name="teamId"/> is playing. 
+        /// </summary>
+        /// <returns>
+        /// A List with all matches with this concrete team
+        /// </returns>
+        /// <param name="teamId">An integer.</param>
         public List<Match> GetAllForATeam(int teamId)
         {
             return context.Matches.Where(m => !m.IsDeleted && (m.GuestId == teamId || m.HostId == teamId)).ToList();
         }
 
+        // Gets a match by id
+        /// <summary>
+        /// Gets a match by id.
+        /// </summary>
+        /// <returns>
+        /// The match with this id
+        /// </returns>
+        /// <param name="id">An integer.</param>
         public Match GetMatchById(int id)
         {
             Match match = context.Matches.FirstOrDefault(m => m.Id == id);

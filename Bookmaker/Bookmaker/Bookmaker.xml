@@ -4,6 +4,56 @@
         <name>Bookmaker</name>
     </assembly>
     <members>
+        <member name="T:Bookmaker.Services.CoachService">
+            <summary>
+            The <c>CoachService</c> class.
+            Contains all methods bound to the coach.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Services.CoachService.#ctor(Bookmaker.Data.BookmakerContext)">
+            <summary>
+            Initializes a new instance of <c>CoachService</c> with parameter <paramref name="context"/>.
+            </summary>
+            <param name="context">A BookmakerContext.</param>
+        </member>
+        <member name="M:Bookmaker.Services.CoachService.AddCoach(Bookmaker.Data.Models.Coach)">
+            <summary>
+            Adds <paramref name="coach"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="coach">A Coach.</param>
+        </member>
+        <member name="M:Bookmaker.Services.CoachService.DeleteCoach(System.Int32)">
+            <summary>
+            Deletes a coach by <paramref name="id"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The coach is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+            </remarks>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.CoachService.GetAll">
+            <summary>
+            Gets all coaches.
+            </summary>
+            <returns>
+            A List with all coaches
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.CoachService.GetCoachById(System.Int32)">
+            <summary>
+            Gets a coach by id.
+            </summary>
+            <returns>
+            The coach with this id
+            </returns>
+            <param name="id">An integer.</param>
+        </member>
         <member name="T:Bookmaker.Services.ICoachService">
             <summary>
             The <c>ICoachService</c> interface.
@@ -47,6 +97,116 @@
             The coach with this id
             </returns>
             <param name="id">An integer.</param>
+        </member>
+        <member name="T:Bookmaker.Services.IInjuryService">
+            <summary>
+            The <c>IInjuryService</c> interface.
+            Contains all methods bound to the injury.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Services.IInjuryService.AddInjury(System.String)">
+            <summary>
+            Adds a new injury by <paramref name="name"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="name">A string.</param>
+        </member>
+        <member name="T:Bookmaker.Services.IMatchService">
+            <summary>
+            The <c>IMatchService</c> interface.
+            Contains all methods bound to the match.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Services.IMatchService.AddMatch(Bookmaker.Data.Models.Match)">
+            <summary>
+            Adds <paramref name="match"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="match">A Match.</param>
+        </member>
+        <member name="M:Bookmaker.Services.IMatchService.RemoveMatch(System.Int32)">
+            <summary>
+            Removes a match by <paramref name="id"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The match is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+            </remarks>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.IMatchService.PlayMatch(System.Int32)">
+            <summary>
+            Generates a result for a match with concrete <paramref name="id"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.IMatchService.GetMatchResult(System.Int32)">
+            <summary>
+            Gets the result for a match with concrete <paramref name="id"/>.
+            </summary>
+            <returns>
+            A string with the result
+            </returns>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.IMatchService.GetAll">
+            <summary>
+            Gets all matches.
+            </summary>
+            <returns>
+            A List with all matches
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.IMatchService.GetAllForATeam(System.Int32)">
+            <summary>
+            Gets all matches where concrete team with <paramref name="teamId"/> is playing. 
+            </summary>
+            <returns>
+            A List with all matches with this concrete team
+            </returns>
+            <param name="teamId">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.IMatchService.GetMatchById(System.Int32)">
+            <summary>
+            Gets a match by id.
+            </summary>
+            <returns>
+            The match with this id
+            </returns>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="T:Bookmaker.Services.InjuryService">
+            <summary>
+            The <c>InjuryService</c> class.
+            Contains all methods bound to the injury.
+            </summary>
+            <remarks>
+            <para>This class can add new injury.</para>
+            </remarks>
+        </member>
+        <member name="M:Bookmaker.Services.InjuryService.#ctor(Bookmaker.Data.BookmakerContext)">
+            <summary>
+            Initializes a new instance of <c>InjuryService</c> with parameter <paramref name="context"/>.
+            </summary>
+            <param name="context">A BookmakerContext.</param>
+        </member>
+        <member name="M:Bookmaker.Services.InjuryService.AddInjury(System.String)">
+            <summary>
+            Adds <paramref name="name"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="name">A string.</param>
         </member>
         <member name="T:Bookmaker.Services.IPlayerService">
             <summary>
@@ -124,6 +284,83 @@
             Nothing
             </returns>
             <param name="result">A Result.</param>
+        </member>
+        <member name="T:Bookmaker.Services.MatchService">
+            <summary>
+            The <c>MatchService</c> class.
+            Contains all methods bound to the match.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Services.MatchService.#ctor(Bookmaker.Data.BookmakerContext)">
+            <summary>
+            Initializes a new instance of <c>MatchService</c> with parameter <paramref name="context"/>.
+            </summary>
+            <param name="context">A BookmakerContext.</param>
+        </member>
+        <member name="M:Bookmaker.Services.MatchService.AddMatch(Bookmaker.Data.Models.Match)">
+            <summary>
+            Adds <paramref name="match"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="match">A Match.</param>
+        </member>
+        <member name="M:Bookmaker.Services.MatchService.RemoveMatch(System.Int32)">
+            <summary>
+            Removes a match by <paramref name="id"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The match is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+            </remarks>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.MatchService.PlayMatch(System.Int32)">
+            <summary>
+            Generates a result for a match with concrete <paramref name="id"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.MatchService.GetMatchResult(System.Int32)">
+            <summary>
+            Gets the result for a match with concrete <paramref name="id"/>.
+            </summary>
+            <returns>
+            A string with the result
+            </returns>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.MatchService.GetAll">
+            <summary>
+            Gets all matches.
+            </summary>
+            <returns>
+            A List with all matches
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.MatchService.GetAllForATeam(System.Int32)">
+            <summary>
+            Gets all matches where concrete team with <paramref name="teamId"/> is playing. 
+            </summary>
+            <returns>
+            A List with all matches with this concrete team
+            </returns>
+            <param name="teamId">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.MatchService.GetMatchById(System.Int32)">
+            <summary>
+            Gets a match by id.
+            </summary>
+            <returns>
+            The match with this id
+            </returns>
+            <param name="id">An integer.</param>
         </member>
         <member name="T:Bookmaker.Services.PlayerService">
             <summary>

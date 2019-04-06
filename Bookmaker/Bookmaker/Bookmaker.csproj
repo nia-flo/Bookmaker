@@ -6,7 +6,8 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>C:\Users\PL\Desktop\Bookmaker - git repository folder\Bookmaker\Bookmaker\Bookmaker\bookmaker.xml</DocumentationFile>
+    <DocumentationFile>C:\Users\nia\Documents\it-kariera\Разработка на софтуер\FinalProject\Bookmaker\Bookmaker\Bookmaker\Bookmaker.xml</DocumentationFile>
+    <OutputPath></OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
