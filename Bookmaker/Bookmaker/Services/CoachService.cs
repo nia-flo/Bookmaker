@@ -82,7 +82,7 @@ namespace Bookmaker.Services
 
         // Gets a coach by id
         /// <summary>
-        /// Gets a coach by id.
+        /// Gets a coach by <paramref name="id"/>.
         /// </summary>
         /// <returns>
         /// The coach with this id
@@ -94,7 +94,7 @@ namespace Bookmaker.Services
 
             if (coach == null || coach.IsDeleted == true)
             {
-                throw new ArgumentException(Exceptions.InvalidId);
+                throw new ArgumentException(ExceptionMessages.InvalidId);
             }
 
             return coach;

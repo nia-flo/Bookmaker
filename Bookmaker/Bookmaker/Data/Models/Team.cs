@@ -7,6 +7,15 @@ using System.Text;
 
 namespace Bookmaker.Data.Models
 {
+    /*
+        The Team class
+        Contains all data for a team
+    */
+    /// <summary>
+    /// The <c>Team</c> class.
+    /// Contains all data for a team.
+    /// </summary>
+    /// <inheritdoc cref="T:Bookmaker.Data.Models.IDeletable"/>
     public class Team : IDeletable
     {
         public Team()
@@ -19,6 +28,17 @@ namespace Bookmaker.Data.Models
 
         public bool IsDeleted { get; set; }
 
+        // Deletes the entry
+        /// <summary>
+        /// Deletes the entry.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <remarks>
+        /// <para>The property IsDeleted is just made true</para>
+        /// </remarks>
+        /// <inheritdoc cref="T:Bookmaker.Data.Models.IDeletable.Delete"/>
         public void Delete()
         {
             foreach (var player in this.Players)
@@ -44,7 +64,7 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw new ArgumentException(Exceptions.InvalidTeamName);
+                    throw new ArgumentException(ExceptionMessages.InvalidTeamName);
                 }
             }
         }
@@ -66,7 +86,7 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw new ArgumentException(Exceptions.InvalidDivision);
+                    throw new ArgumentException(ExceptionMessages.InvalidDivision);
                 }
             }
         }
@@ -84,7 +104,7 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw new ArgumentException(Exceptions.InvalidBudget);
+                    throw new ArgumentException(ExceptionMessages.InvalidBudget);
                 }
             }
         }
@@ -93,6 +113,13 @@ namespace Bookmaker.Data.Models
 
         public int CoachesCount => this.GetCoaches().Count;
 
+        // Converts team to string
+        /// <summary>
+        /// Converts team to string.
+        /// </summary>
+        /// <returns>
+        /// A string
+        /// </returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -137,28 +164,74 @@ namespace Bookmaker.Data.Models
             return sb.ToString().Trim();
         }
 
+        // Adds player to the team
+        /// <summary>
+        /// Adds <paramref name="player"/> to the team.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="player">A Player.</param>
         public void AddPlayer(Player player)
         {
             this.Players.Add(player);
         }
 
+        // Removes player from the team
+        /// <summary>
+        /// Removes <paramref name="player"/> from the team.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="player">A Player.</param>
         public void RemovePlayer(Player player)
         {
             this.Players.Remove(player);
         }
 
+        // Adds coach to the team
+        /// <summary>
+        /// Adds <paramref name="coach"/> to the team.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="coach">A Coach.</param>
         public void AddCoach(Coach coach)
         {
             this.Coaches.Add(coach);
         }
 
+        // Removes coach from the team
+        /// <summary>
+        /// Removes <paramref name="coach"/> from the team.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="coach">A Coach.</param>
         public void RemoveCoach(Coach coach)
         {
             this.Coaches.Remove(coach);
         }
 
+        // Gets all players
+        /// <summary>
+        /// Gets all players.
+        /// </summary>
+        /// <returns>
+        /// A List with all players
+        /// </returns>
         public List<Player> GetPlayers() => this.Players.Where(p => !p.IsDeleted).ToList();
 
+        // Gets all coaches
+        /// <summary>
+        /// Gets all coaches.
+        /// </summary>
+        /// <returns>
+        /// A List with all coaches
+        /// </returns>
         public List<Coach> GetCoaches() => this.Coaches.Where(c => !c.IsDeleted).ToList();
     }
 }

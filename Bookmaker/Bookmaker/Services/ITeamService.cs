@@ -99,9 +99,9 @@ namespace Bookmaker.Services
         /// </returns>
         List<Player> GetAllPlayersForATeam(int teamId);
 
-        // Gets a team name by id
+        // Gets a team by id
         /// <summary>
-        /// Gets a team name by id.
+        /// Gets a team by id.
         /// </summary>
         /// <returns>
         /// A List with a team name by id

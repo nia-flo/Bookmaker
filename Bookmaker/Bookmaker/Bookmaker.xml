@@ -4,6 +4,427 @@
         <name>Bookmaker</name>
     </assembly>
     <members>
+        <member name="T:Bookmaker.Data.BookmakerContext">
+            <summary>
+            The <c>BookmakerContext</c> class.
+            Contains all DBSets and setting for server configuring and model creating.
+            </summary>
+        </member>
+        <member name="T:Bookmaker.Data.ConfigurationData">
+            <summary>
+            The <c>ConfigurationData</c> class.
+            Contains the connection string.
+            </summary>
+        </member>
+        <member name="F:Bookmaker.Data.ConfigurationData.ConnectionString">
+            <summary>
+            The connection string.
+            </summary>
+        </member>
+        <member name="T:Bookmaker.Data.Constants">
+            <summary>
+            The <c>Constants</c> class.
+            Contains all constants.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.Constants.MinAge">
+            <summary>
+            Minimum age.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.Constants.MaxAge">
+            <summary>
+            Maximum age.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.Constants.DivisionsCount">
+            <summary>
+            Count of the divisions.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.Constants.MaxGoalsCount">
+            <summary>
+            Maximum count of the goals.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.Constants.LabelSize">
+            <summary>
+            Size of the label.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.Constants.MinPlayersCountForAMatch">
+            <summary>
+            Minimum count of the players that a team must have to play a match.
+            </summary>
+        </member>
+        <member name="T:Bookmaker.Data.ExceptionMessages">
+            <summary>
+            The <c>ExceptionMessages</c> class.
+            Contains all exception messages.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.InvalidPersonName">
+            <summary>
+            Exception message for an invalid person name.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.InvalidAge">
+            <summary>
+            Exception message for an invalid age.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.InvalidInjuryName">
+            <summary>
+            Exception message for an invalid injury name.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.InvalidTeamName">
+            <summary>
+            Exception message for an invalid team name.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.InvalidDivision">
+            <summary>
+            Exception message for an invalid division.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.InvalidBudget">
+            <summary>
+            Exception message for an invalid budget.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.InvalidId">
+            <summary>
+            Exception message for an invalid id.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.NotOnSalePlayer">
+            <summary>
+            Exception message for a player that is not on sale.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.MatchNotPlayed">
+            <summary>
+            Exception message for a match that is not played yet.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.HostTeamNotCapableForAMatch">
+            <summary>
+            Exception message for a host team that is not capable for a match.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.GuestTeamNotCapableForAMatch">
+            <summary>
+            Exception message for a guest team that is not capable for a match.
+            </summary>
+        </member>
+        <member name="P:Bookmaker.Data.ExceptionMessages.MatchHasAlreadyBeenPlayed">
+            <summary>
+            Exception message for a match that has already been played.
+            </summary>
+        </member>
+        <member name="T:Bookmaker.Data.Models.Coach">
+            <summary>
+            The <c>BookmakerContext</c> class.
+            Contains all data for a coach.
+            </summary>
+            <inheritdoc cref="T:Bookmaker.Data.Models.Person"/>
+        </member>
+        <member name="T:Bookmaker.Data.Models.IDeletable">
+            <summary>
+            The <c>IDeletable</c> interface.
+            Contains property IsDeleted and method Delete.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Data.Models.IDeletable.Delete">
+            <summary>
+            Deletes the entry.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The property IsDeleted is just made true</para>
+            </remarks>
+        </member>
+        <member name="T:Bookmaker.Data.Models.Injury">
+            <summary>
+            The <c>Injury</c> class.
+            Contains all data for an injury.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Injury.ToString">
+            <summary>
+            Converts injury to string.
+            </summary>
+            <returns>
+            A string
+            </returns>
+        </member>
+        <member name="T:Bookmaker.Data.Models.Match">
+            <summary>
+            The <c>Match</c> class.
+            Contains all data for a match.
+            </summary>
+            <inheritdoc cref="T:Bookmaker.Data.Models.IDeletable"/>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Match.Delete">
+            <summary>
+            Deletes the entry.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The property IsDeleted is just made true</para>
+            </remarks>
+            <inheritdoc cref="M:Bookmaker.Data.Models.IDeletable.Delete"/>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Match.ToString">
+            <summary>
+            Converts match to string.
+            </summary>
+            <returns>
+            A string
+            </returns>
+        </member>
+        <member name="T:Bookmaker.Data.Models.MatchTeam">
+            <summary>
+            The <c>MatchTeam</c> class.
+            A class to represent the mapping table between Match and Team.
+            </summary>
+        </member>
+        <member name="T:Bookmaker.Data.Models.Person">
+            <summary>
+            The <c>Person</c> class.
+            Contains all data for a person.
+            </summary>
+            <inheritdoc cref="T:Bookmaker.Data.Models.IDeletable"/>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Person.Delete">
+            <summary>
+            Deletes the entry.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The property IsDeleted is just made true</para>
+            </remarks>
+            <inheritdoc cref="M:Bookmaker.Data.Models.IDeletable.Delete"/>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Person.ToString">
+            <summary>
+            Converts person to string.
+            </summary>
+            <returns>
+            A string
+            </returns>
+        </member>
+        <member name="T:Bookmaker.Data.Models.Player">
+            <summary>
+            The <c>Player</c> class.
+            Contains all data for a player.
+            </summary>
+            <inheritdoc cref="T:Bookmaker.Data.Models.Person"/>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Player.#ctor">
+            <summary>
+            Initializes a new instance of <c>Player</c>.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Player.ToString">
+            <summary>
+            Converts player to string.
+            </summary>
+            <returns>
+            A string
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Player.Sell">
+            <summary>
+            Sells the player.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The property IsOnSale is made true</para>
+            </remarks>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Player.Buy">
+            <summary>
+            Buys the player.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The property IsOnSale is made false</para>
+            </remarks>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Player.SetTeam(System.Nullable{System.Int32},Bookmaker.Data.Models.Team)">
+            <summary>
+            Sets <paramref name="teamId"/> and <paramref name="team"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="teamId">An integer.</param>
+            <param name="team">A Team.</param>
+        </member>
+        <member name="T:Bookmaker.Data.Models.Result">
+            <summary>
+            The <c>Result</c> class.
+            Contains all data for a result.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Result.ToString">
+            <summary>
+            Converts result to string.
+            </summary>
+            <returns>
+            A string
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Result.GetWinner">
+            <summary>
+            Gets the winner.
+            </summary>
+            <returns>
+            A string
+            </returns>
+        </member>
+        <member name="T:Bookmaker.Data.Models.Team">
+            <summary>
+            The <c>Team</c> class.
+            Contains all data for a team.
+            </summary>
+            <inheritdoc cref="T:Bookmaker.Data.Models.IDeletable"/>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Team.Delete">
+            <summary>
+            Deletes the entry.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The property IsDeleted is just made true</para>
+            </remarks>
+            <inheritdoc cref="T:Bookmaker.Data.Models.IDeletable.Delete"/>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Team.ToString">
+            <summary>
+            Converts team to string.
+            </summary>
+            <returns>
+            A string
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Team.AddPlayer(Bookmaker.Data.Models.Player)">
+            <summary>
+            Adds <paramref name="player"/> to the team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="player">A Player.</param>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Team.RemovePlayer(Bookmaker.Data.Models.Player)">
+            <summary>
+            Removes <paramref name="player"/> from the team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="player">A Player.</param>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Team.AddCoach(Bookmaker.Data.Models.Coach)">
+            <summary>
+            Adds <paramref name="coach"/> to the team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="coach">A Coach.</param>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Team.RemoveCoach(Bookmaker.Data.Models.Coach)">
+            <summary>
+            Removes <paramref name="coach"/> from the team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="coach">A Coach.</param>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Team.GetPlayers">
+            <summary>
+            Gets all players.
+            </summary>
+            <returns>
+            A List with all players
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Data.Models.Team.GetCoaches">
+            <summary>
+            Gets all coaches.
+            </summary>
+            <returns>
+            A List with all coaches
+            </returns>
+        </member>
+        <member name="T:Bookmaker.Data.Validations">
+            <summary>
+            The <c>Validations</c> class.
+            Contains all validations.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Data.Validations.IsNameValid(System.String)">
+            <summary>
+            Validates <paramref name="name"/>.
+            </summary>
+            <returns>
+            True if <paramref name="name"/> is valid, otherwise - false
+            </returns>
+            <param name="name">A string.</param>
+        </member>
+        <member name="M:Bookmaker.Data.Validations.IsAgeValid(System.Int32)">
+            <summary>
+            Validates <paramref name="age"/>.
+            </summary>
+            <returns>
+            True if <paramref name="age"/> is valid, otherwise - false
+            </returns>
+            <param name="age">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Data.Validations.IsDivisionValid(System.Int32)">
+            <summary>
+            Validates <paramref name="division"/>.
+            </summary>
+            <returns>
+            True if <paramref name="division"/> is valid, otherwise - false
+            </returns>
+            <param name="division">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Data.Validations.IsBudgetValid(System.Decimal)">
+            <summary>
+            Validates <paramref name="budget"/>.
+            </summary>
+            <returns>
+            True if <paramref name="budget"/> is valid, otherwise - false
+            </returns>
+            <param name="budget">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Data.Validations.CanTeamPlayMatch(Bookmaker.Data.Models.Team)">
+            <summary>
+            Validates can <paramref name="team"/> play a match.
+            </summary>
+            <returns>
+            True if <paramref name="team"/> can play a match, otherwise - false
+            </returns>
+            <param name="team">A Team.</param>
+        </member>
         <member name="T:Bookmaker.Services.CoachService">
             <summary>
             The <c>CoachService</c> class.
@@ -47,7 +468,7 @@
         </member>
         <member name="M:Bookmaker.Services.CoachService.GetCoachById(System.Int32)">
             <summary>
-            Gets a coach by id.
+            Gets a coach by <paramref name="id"/>.
             </summary>
             <returns>
             The coach with this id
@@ -253,7 +674,7 @@
         </member>
         <member name="M:Bookmaker.Services.IPlayerService.GetPlayerById(System.Int32)">
             <summary>
-            Gets a player by id.
+            Gets a player by <paramref name="id"/>.
             </summary>
             <returns>
             The player with this id
@@ -262,7 +683,7 @@
         </member>
         <member name="M:Bookmaker.Services.IPlayerService.AddInjury(System.Int32,System.String)">
             <summary>
-            Adds <paramref name="name"/> to the player by his <paramref name="playerId"/>.
+            Adds injury <paramref name="name"/> to the player by his <paramref name="playerId"/>.
             </summary>
             <returns>
             Nothing
@@ -284,6 +705,105 @@
             Nothing
             </returns>
             <param name="result">A Result.</param>
+        </member>
+        <member name="T:Bookmaker.Services.ITeamService">
+            <summary>
+            The <c>ITeamService</c> interface.
+            Contains all methods bound to the team.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.AddTeam(Bookmaker.Data.Models.Team)">
+            <summary>
+            Adds <paramref name="team"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="team">A Team.</param>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.DeleteTeam(System.Int32)">
+            <summary>
+            Deletes a team by <paramref name="id"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The team is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+            </remarks>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.AddPlayerToATeam(System.Int32,System.Int32)">
+            <summary>
+            Add player to a team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.SellPlayer(System.Int32,System.Int32)">
+            <summary>
+            Sell player from a team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.AddCoachToATeam(System.Int32,System.Int32)">
+            <summary>
+            Add coach from a team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.RemoveCoachFromATeam(System.Int32,System.Int32)">
+            <summary>
+            Remove coach from a team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.GetAll">
+            <summary>
+            Gets all teams.
+            </summary>
+            <returns>
+            A List with all teams
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.GetAllByDivision(System.Int32)">
+            <summary>
+            Gets all teams by division.
+            </summary>
+            <returns>
+            A List with all teams by division
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.GetAllPlayersForATeam(System.Int32)">
+            <summary>
+            Gets all players for a team.
+            </summary>
+            <returns>
+            A List with all players for a team
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.GetTeamById(System.Int32)">
+            <summary>
+            Gets a team by id.
+            </summary>
+            <returns>
+            A List with a team name by id
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.ITeamService.GetAllCoachesForATeam(System.Int32)">
+            <summary>
+            Gets all coaches for a team.
+            </summary>
+            <returns>
+            A List with all coaches for a team
+            </returns>
         </member>
         <member name="T:Bookmaker.Services.MatchService">
             <summary>
@@ -412,6 +932,25 @@
             A List with all players that are on sale
             </returns>
         </member>
+        <member name="M:Bookmaker.Services.PlayerService.GetPlayerById(System.Int32)">
+            <summary>
+            Gets a player by <paramref name="id"/>.
+            </summary>
+            <returns>
+            The player with this id
+            </returns>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.PlayerService.AddInjury(System.Int32,System.String)">
+            <summary>
+            Adds injury <paramref name="name"/> to the player by his <paramref name="playerId"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="playerId">An integer.</param>
+            <param name="name">A string.</param>
+        </member>
         <member name="T:Bookmaker.Services.ResultService">
             <summary>
             The <c>ResultService</c> class.
@@ -435,6 +974,111 @@
             Nothing
             </returns>
             <param name="result">A Result.</param>
+        </member>
+        <member name="T:Bookmaker.Services.TeamService">
+            <summary>
+            The <c>TeamService</c> class.
+            Contains all methods bound to the team.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.#ctor(Bookmaker.Data.BookmakerContext)">
+            <summary>
+            Initializes a new instance of <c>TeamService</c> with parameter <paramref name="context"/>.
+            </summary>
+            <param name="context">A BookmakerContext.</param>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.AddTeam(Bookmaker.Data.Models.Team)">
+            <summary>
+            Adds <paramref name="team"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="team">A Team.</param>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.DeleteTeam(System.Int32)">
+            <summary>
+            Deletes a team by <paramref name="id"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The team is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+            </remarks>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.AddPlayerToATeam(System.Int32,System.Int32)">
+            <summary>
+            Add player to a team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.SellPlayer(System.Int32,System.Int32)">
+            <summary>
+            Sell player from a team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.AddCoachToATeam(System.Int32,System.Int32)">
+            <summary>
+            Add coach from a team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.RemoveCoachFromATeam(System.Int32,System.Int32)">
+            <summary>
+            Remove coach from a team.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.GetAll">
+            <summary>
+            Gets all teams.
+            </summary>
+            <returns>
+            A List with all teams
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.GetAllByDivision(System.Int32)">
+            <summary>
+            Gets all teams by division.
+            </summary>
+            <returns>
+            A List with all teams by division
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.GetAllPlayersForATeam(System.Int32)">
+            <summary>
+            Gets all players for a team.
+            </summary>
+            <returns>
+            A List with all players for a team.
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.GetTeamById(System.Int32)">
+            <summary>
+            Gets team by ID.
+            </summary>
+            <returns>
+            A team name.
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.TeamService.GetAllCoachesForATeam(System.Int32)">
+            <summary>
+            Gets all coaches for a team.
+            </summary>
+            <returns>
+            A List with all coaches for a team
+            </returns>
         </member>
     </members>
 </doc>

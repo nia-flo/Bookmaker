@@ -32,13 +32,13 @@ namespace Bookmaker.Services
         /// Initializes a new instance of <c>TeamService</c> with parameter <paramref name="context"/>.
         /// </summary>
         /// <param name="context">A BookmakerContext.</param>
-
         public TeamService(BookmakerContext context)
         {
             this.context = context;
             this.playerService = new PlayerService(context);
             this.coachService = new CoachService(context);
         }
+
         // Adds a team to the DBContext
         /// <summary>
         /// Adds <paramref name="team"/> to the DBContext.
@@ -47,13 +47,13 @@ namespace Bookmaker.Services
         /// Nothing
         /// </returns>
         /// <param name="team">A Team.</param>
-
         public void AddTeam(Team team)
         {
             context.Teams.Add(team);
 
             context.SaveChanges();
         }
+
         // Deletes a team
         /// <summary>
         /// Deletes a team by <paramref name="id"/>.
@@ -61,19 +61,17 @@ namespace Bookmaker.Services
         /// <returns>
         /// Nothing
         /// </returns>
-        /// <param name="id">A Team.</param>
         /// <remarks>
         /// <para>The team is not deleted from the DBContext, it's property ISDeleted is just made true</para>
         /// </remarks>
         /// <param name="id">An integer.</param>
-
         public void DeleteTeam(int id)
         {
             Team team = GetTeamById(id);
 
             if (team == null)
             {
-                throw new ArgumentException(Exceptions.InvalidId);
+                throw new ArgumentException(ExceptionMessages.InvalidId);
             }
             
             team.Delete();
@@ -81,6 +79,13 @@ namespace Bookmaker.Services
             context.SaveChanges();
         }
 
+        // Add player to a team
+        /// <summary>
+        /// Add player to a team.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
         public void AddPlayerToATeam(int teamId, int playerId)
         {
             Team team = GetTeamById(teamId);
@@ -88,7 +93,7 @@ namespace Bookmaker.Services
 
             if (!player.IsOnSale)
             {
-                throw new ArgumentException(Exceptions.NotOnSalePlayer);
+                throw new ArgumentException(ExceptionMessages.NotOnSalePlayer);
             }
 
             team.AddPlayer(player);
@@ -98,6 +103,13 @@ namespace Bookmaker.Services
             context.SaveChanges();
         }
 
+        // Sell player from a team
+        /// <summary>
+        /// Sell player from a team.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
         public void SellPlayer(int teamId, int playerId)
         {
             Team team = GetTeamById(teamId);
@@ -105,7 +117,7 @@ namespace Bookmaker.Services
 
             if (player.TeamId != teamId)
             {
-                throw new ArgumentException(Exceptions.InvalidId);
+                throw new ArgumentException(ExceptionMessages.InvalidId);
             }
 
             team.RemovePlayer(player);
@@ -115,6 +127,13 @@ namespace Bookmaker.Services
             context.SaveChanges();
         }
 
+        // Add coach from a team
+        /// <summary>
+        /// Add coach from a team.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
         public void AddCoachToATeam(int teamId, int coachId)
         {
             Team team = GetTeamById(teamId);
@@ -122,7 +141,7 @@ namespace Bookmaker.Services
 
             if (team.Coaches.Contains(coach))
             {
-                throw new ArgumentException(Exceptions.InvalidId);
+                throw new ArgumentException(ExceptionMessages.InvalidId);
             }
 
             team.AddCoach(coach);
@@ -130,6 +149,13 @@ namespace Bookmaker.Services
             context.SaveChanges();
         }
 
+        // Remove coach from a team
+        /// <summary>
+        /// Remove coach from a team.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
         public void RemoveCoachFromATeam(int teamId, int coachId)
         {
             Team team = GetTeamById(teamId);
@@ -137,13 +163,14 @@ namespace Bookmaker.Services
 
             if (!team.Coaches.Contains(coach))
             {
-                throw new ArgumentException(Exceptions.InvalidId);
+                throw new ArgumentException(ExceptionMessages.InvalidId);
             }
 
             team.RemoveCoach(coach);
 
             context.SaveChanges();
         }
+
         // Gets all teams.
         /// <summary>
         /// Gets all teams.
@@ -151,7 +178,6 @@ namespace Bookmaker.Services
         /// <returns>
         /// A List with all teams
         /// </returns>
-
         public List<Team> GetAll()
         {
             return context.Teams.Where(t => !t.IsDeleted).ToList();
@@ -182,6 +208,7 @@ namespace Bookmaker.Services
 
             return team.GetPlayers();
         }
+
         // Gets  team by ID.
         /// <summary>
         /// Gets team by ID.
@@ -195,7 +222,7 @@ namespace Bookmaker.Services
 
             if (team == null || team.IsDeleted)
             {
-                throw new ArgumentException(Exceptions.InvalidId);
+                throw new ArgumentException(ExceptionMessages.InvalidId);
             }
 
             return team;
@@ -208,7 +235,6 @@ namespace Bookmaker.Services
         /// <returns>
         /// A List with all coaches for a team
         /// </returns>
-
         public List<Coach> GetAllCoachesForATeam(int teamId)
         {
             Team team = GetTeamById(teamId);

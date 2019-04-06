@@ -56,7 +56,7 @@ namespace Bookmaker.Services
 
         // Gets a player by id
         /// <summary>
-        /// Gets a player by id.
+        /// Gets a player by <paramref name="id"/>.
         /// </summary>
         /// <returns>
         /// The player with this id
@@ -66,7 +66,7 @@ namespace Bookmaker.Services
 
         // Adds an injury to a player
         /// <summary>
-        /// Adds <paramref name="name"/> to the player by his <paramref name="playerId"/>.
+        /// Adds injury <paramref name="name"/> to the player by his <paramref name="playerId"/>.
         /// </summary>
         /// <returns>
         /// Nothing

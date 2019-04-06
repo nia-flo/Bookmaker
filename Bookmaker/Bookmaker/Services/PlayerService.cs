@@ -96,18 +96,35 @@ namespace Bookmaker.Services
             return context.Players.Where(p => !p.IsDeleted && p.IsOnSale).ToList();
         }
 
+        // Gets a player by id
+        /// <summary>
+        /// Gets a player by <paramref name="id"/>.
+        /// </summary>
+        /// <returns>
+        /// The player with this id
+        /// </returns>
+        /// <param name="id">An integer.</param>
         public Player GetPlayerById(int id)
         {
             Player player = context.Players.FirstOrDefault(p => p.Id == id);
 
             if (player == null || player.IsDeleted)
             {
-                throw new ArgumentException(Exceptions.InvalidId);
+                throw new ArgumentException(ExceptionMessages.InvalidId);
             }
 
             return player;
         }
 
+        // Adds an injury to a player
+        /// <summary>
+        /// Adds injury <paramref name="name"/> to the player by his <paramref name="playerId"/>.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="playerId">An integer.</param>
+        /// <param name="name">A string.</param>
         public void AddInjury(int id, string injuryName)
         {
             Player player = this.GetPlayerById(id);

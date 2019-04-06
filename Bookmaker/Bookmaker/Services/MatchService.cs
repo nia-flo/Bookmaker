@@ -47,17 +47,17 @@ namespace Bookmaker.Services
         {
             if (match.HostId == match.GuestId)
             {
-                throw new ArgumentException(Exceptions.InvalidId);
+                throw new ArgumentException(ExceptionMessages.InvalidId);
             }
 
             if (!Validations.CanTeamPlayMatch(match.HostTeam))
             {
-                throw new ArgumentException(Exceptions.HostTeamNotCapableForAMatch);
+                throw new ArgumentException(ExceptionMessages.HostTeamNotCapableForAMatch);
             }
 
             if (!Validations.CanTeamPlayMatch(match.GuestTeam))
             {
-                throw new ArgumentException(Exceptions.GuestTeamNotCapableForAMatch);
+                throw new ArgumentException(ExceptionMessages.GuestTeamNotCapableForAMatch);
             }
 
             context.Matches.Add(match);
@@ -99,7 +99,7 @@ namespace Bookmaker.Services
 
             if (match.Result != null)
             {
-                throw new ArgumentException(Exceptions.MatchHasAlreadyBeenPlayed);
+                throw new ArgumentException(ExceptionMessages.MatchHasAlreadyBeenPlayed);
             }
 
             Random random = new Random();
@@ -131,7 +131,7 @@ namespace Bookmaker.Services
 
             if (match.Result == null)
             {
-                throw new ArgumentException(Exceptions.MatchNotPlayed);
+                throw new ArgumentException(ExceptionMessages.MatchNotPlayed);
             }
 
             return match.Result.ToString();
@@ -176,7 +176,7 @@ namespace Bookmaker.Services
 
             if (match == null || match.IsDeleted)
             {
-                throw new ArgumentException(Exceptions.InvalidId);
+                throw new ArgumentException(ExceptionMessages.InvalidId);
             }
 
             return match;

@@ -5,6 +5,15 @@ using Bookmaker.Services;
 
 namespace Bookmaker.Data.Models
 {
+    /*
+        The Match class
+        Contains all data for a match
+    */
+    /// <summary>
+    /// The <c>Match</c> class.
+    /// Contains all data for a match.
+    /// </summary>
+    /// <inheritdoc cref="T:Bookmaker.Data.Models.IDeletable"/>
     public class Match : IDeletable
     {
         public int Id { get; set; }
@@ -13,6 +22,17 @@ namespace Bookmaker.Data.Models
 
         public bool IsDeleted { get; set; }
 
+        // Deletes the entry
+        /// <summary>
+        /// Deletes the entry.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <remarks>
+        /// <para>The property IsDeleted is just made true</para>
+        /// </remarks>
+        /// <inheritdoc cref="M:Bookmaker.Data.Models.IDeletable.Delete"/>
         public void Delete()
         {
             this.IsDeleted = true;
@@ -29,6 +49,13 @@ namespace Bookmaker.Data.Models
         public int? ResultId { get; set; }
         public virtual Result Result { get; set; }
 
+        // Converts match to string
+        /// <summary>
+        /// Converts match to string.
+        /// </summary>
+        /// <returns>
+        /// A string
+        /// </returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

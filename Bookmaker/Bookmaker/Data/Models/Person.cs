@@ -5,6 +5,15 @@ using System.Text;
 
 namespace Bookmaker.Data.Models
 {
+    /*
+        The Person class
+        Contains all data for a person
+    */
+    /// <summary>
+    /// The <c>Person</c> class.
+    /// Contains all data for a person.
+    /// </summary>
+    /// <inheritdoc cref="T:Bookmaker.Data.Models.IDeletable"/>
     public abstract class Person : IDeletable
     {
         public int Id { get; set; }
@@ -22,7 +31,7 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw new ArgumentException(Exceptions.InvalidPersonName);
+                    throw new ArgumentException(ExceptionMessages.InvalidPersonName);
                 }
             }
         }
@@ -40,18 +49,36 @@ namespace Bookmaker.Data.Models
                 }
                 else
                 {
-                    throw new ArgumentException(Exceptions.InvalidAge);
+                    throw new ArgumentException(ExceptionMessages.InvalidAge);
                 }
             }
         }
 
         public bool IsDeleted { get; set; }
 
+        // Deletes the entry
+        /// <summary>
+        /// Deletes the entry.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <remarks>
+        /// <para>The property IsDeleted is just made true</para>
+        /// </remarks>
+        /// <inheritdoc cref="M:Bookmaker.Data.Models.IDeletable.Delete"/>
         public void Delete()
         {
             this.IsDeleted = true;
         }
 
+        // Converts person to string
+        /// <summary>
+        /// Converts person to string.
+        /// </summary>
+        /// <returns>
+        /// A string
+        /// </returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();

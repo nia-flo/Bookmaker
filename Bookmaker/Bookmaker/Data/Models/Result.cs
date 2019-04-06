@@ -3,6 +3,14 @@ using System.Text;
 
 namespace Bookmaker.Data.Models
 {
+    /*
+        The Result class
+        Contains all data for a result
+    */
+    /// <summary>
+    /// The <c>Result</c> class.
+    /// Contains all data for a result.
+    /// </summary>
     public class Result
     {
         public int Id { get; set; }
@@ -11,6 +19,13 @@ namespace Bookmaker.Data.Models
 
         public int GuestGoals { get; set; }
 
+        // Converts result to string
+        /// <summary>
+        /// Converts result to string.
+        /// </summary>
+        /// <returns>
+        /// A string
+        /// </returns>
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
@@ -22,6 +37,13 @@ namespace Bookmaker.Data.Models
             return sb.ToString().Trim();
         }
 
+        // Gets the winner
+        /// <summary>
+        /// Gets the winner.
+        /// </summary>
+        /// <returns>
+        /// A string
+        /// </returns>
         public string GetWinner()
         {
             if (this.HostGoals > this.GuestGoals)

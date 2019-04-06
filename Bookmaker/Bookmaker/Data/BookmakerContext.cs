@@ -3,6 +3,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Bookmaker.Data
 {
+    /*
+        The BookmakerContext class
+        Contains all DBSets and setting for server configuring and model creating
+    */
+    /// <summary>
+    /// The <c>BookmakerContext</c> class.
+    /// Contains all DBSets and setting for server configuring and model creating.
+    /// </summary>
     public class BookmakerContext : DbContext
     {
         public virtual DbSet<Player> Players { get; set; }
@@ -19,7 +27,6 @@ namespace Bookmaker.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //koi server da izpolzva
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(ConfigurationData.ConnectionString).UseLazyLoadingProxies();
