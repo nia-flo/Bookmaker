@@ -4,5 +4,28 @@
         <name>Bookmaker</name>
     </assembly>
     <members>
+        <member name="T:Bookmaker.Services.ResultService">
+            <summary>
+            The <c>ResultService</c> class.
+            Contains all methods bound to the result
+            <list type="bullet">
+            <item>
+            <term>AddResult</term>
+            <description>Add new result operation</description>
+            </item>
+            </list>
+            </summary>
+            <remarks>
+            <para>This class can add new result.</para>
+            </remarks>
+        </member>
+        <member name="M:Bookmaker.Services.ResultService.AddResult(Bookmaker.Data.Models.Result)">
+            <summary>
+            Adds a result  name="a"/> and <paramref name="result"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+        </member>
     </members>
 </doc>

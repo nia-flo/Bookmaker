@@ -9,7 +9,7 @@ namespace Bookmaker.Services
     public class MatchService : IMatchService
     {
         private BookmakerContext context;
-        private ResultService resultService;
+        private IResultService resultService;
 
         //public MatchService()
         //{
