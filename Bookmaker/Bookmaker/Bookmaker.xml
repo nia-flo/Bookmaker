@@ -6,9 +6,47 @@
     <members>
         <member name="T:Bookmaker.Services.ICoachService">
             <summary>
-            The <c>IPlayerService</c> interface.
-            Contains all methods bound to the player.
+            The <c>ICoachService</c> interface.
+            Contains all methods bound to the coach.
             </summary>
+        </member>
+        <member name="M:Bookmaker.Services.ICoachService.AddCoach(Bookmaker.Data.Models.Coach)">
+            <summary>
+            Adds <paramref name="coach"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="coach">A Coach.</param>
+        </member>
+        <member name="M:Bookmaker.Services.ICoachService.DeleteCoach(System.Int32)">
+            <summary>
+            Deletes a coach by <paramref name="id"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <remarks>
+            <para>The coach is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+            </remarks>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.ICoachService.GetAll">
+            <summary>
+            Gets all coaches.
+            </summary>
+            <returns>
+            A List with all coaches
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.ICoachService.GetCoachById(System.Int32)">
+            <summary>
+            Gets a coach by id.
+            </summary>
+            <returns>
+            The coach with this id
+            </returns>
+            <param name="id">An integer.</param>
         </member>
         <member name="T:Bookmaker.Services.IPlayerService">
             <summary>
@@ -32,7 +70,6 @@
             <returns>
             Nothing
             </returns>
-            <param name="id">A Player.</param>
             <remarks>
             <para>The player is not deleted from the DBContext, it's property ISDeleted is just made true</para>
             </remarks>
