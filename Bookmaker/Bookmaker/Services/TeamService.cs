@@ -10,20 +10,20 @@ namespace Bookmaker.Services
     {
         private BookmakerContext context;
         private IPlayerService playerService;
-        private ICoachSevice coachSevice;
+        private ICoachService coachService;
 
         //public TeamService()
         //{
         //    this.context = new BookmakerContext();
         //    this.playerService = new PlayerService(context);
-        //    this.coachSevice = new CoachService(context);
+        //    this.coachService = new CoachService(context);
         //}
 
         public TeamService(BookmakerContext context)
         {
             this.context = context;
             this.playerService = new PlayerService(context);
-            this.coachSevice = new CoachService(context);
+            this.coachService = new CoachService(context);
         }
 
         public void AddTeam(Team team)
@@ -84,7 +84,7 @@ namespace Bookmaker.Services
         public void AddCoachToATeam(int teamId, int coachId)
         {
             Team team = GetTeamById(teamId);
-            Coach coach = coachSevice.GetCoachById(coachId);
+            Coach coach = coachService.GetCoachById(coachId);
 
             if (team.Coaches.Contains(coach))
             {
@@ -99,7 +99,7 @@ namespace Bookmaker.Services
         public void RemoveCoachFromATeam(int teamId, int coachId)
         {
             Team team = GetTeamById(teamId);
-            Coach coach = coachSevice.GetCoachById(coachId);
+            Coach coach = coachService.GetCoachById(coachId);
 
             if (!team.Coaches.Contains(coach))
             {

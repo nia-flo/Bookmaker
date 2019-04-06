@@ -12,14 +12,14 @@ namespace Bookmaker.View
 {
     public class Display
     {
-        private ICoachSevice coachSevice;
+        private ICoachService coachService;
         private IPlayerService playerService;
         private ITeamService teamService;
         private IMatchService matchService;
 
         public Display(BookmakerContext context)
         {
-            this.coachSevice = new CoachService(context);
+            this.coachService = new CoachService(context);
             this.playerService = new PlayerService(context);
             this.teamService = new TeamService(context);
             this.matchService = new MatchService(context);
@@ -337,7 +337,7 @@ namespace Bookmaker.View
                 int id = int.Parse(Console.ReadLine());
                 Print("");
 
-                Coach coach = coachSevice.GetCoachById(id);
+                Coach coach = coachService.GetCoachById(id);
 
                 Print(coach.ToString());
             }
@@ -882,7 +882,7 @@ namespace Bookmaker.View
 
             try
             {
-                List<Coach> coaches = coachSevice.GetAll();
+                List<Coach> coaches = coachService.GetAll();
 
                 if (coaches.Count == 0)
                 {
@@ -915,7 +915,7 @@ namespace Bookmaker.View
                 int id = int.Parse(Console.ReadLine());
                 Print("");
 
-                coachSevice.DeleteCoach(id);
+                coachService.DeleteCoach(id);
 
                 Print("Coach deleted successfully!");
             }
@@ -944,7 +944,7 @@ namespace Bookmaker.View
                 coach.Age = int.Parse(Console.ReadLine());
                 Print("");
 
-                coachSevice.AddCoach(coach);
+                coachService.AddCoach(coach);
 
                 Print("Coach added successfully!");
             }
