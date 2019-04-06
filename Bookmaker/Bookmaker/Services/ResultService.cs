@@ -3,7 +3,7 @@ using Bookmaker.Data.Models;
 
 namespace Bookmaker.Services
 {
-    public class ResultService
+    public class ResultService : IResultService
     {
         private BookmakerContext context;
 
