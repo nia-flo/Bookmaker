@@ -485,7 +485,7 @@ namespace Bookmaker.View
             {
                 Print(e.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Print(SomethingWentWrong());
             }

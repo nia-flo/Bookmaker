@@ -15,6 +15,8 @@ namespace Bookmaker.Services
         public void AddResult(Result result)
         {
             context.Results.Add(result);
+
+            context.SaveChanges();
         }
     }
 }
