@@ -11,12 +11,6 @@ namespace Bookmaker.Services
     /// <summary>
     /// The <c>ResultService</c> class.
     /// Contains all methods bound to the result.
-    /// <list type="bullet">
-    /// <item>
-    /// <term>AddResult</term>
-    /// <description>Add new result operation</description>
-    /// </item>
-    /// </list>
     /// </summary>
     /// <remarks>
     /// <para>This class can add new result.</para>

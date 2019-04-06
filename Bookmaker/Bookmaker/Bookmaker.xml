@@ -4,28 +4,44 @@
         <name>Bookmaker</name>
     </assembly>
     <members>
+        <member name="T:Bookmaker.Services.IResultService">
+            <summary>
+            The <c>IResultService</c> interface.
+            Contains all methods bound to the result.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Services.IResultService.AddResult(Bookmaker.Data.Models.Result)">
+            <summary>
+            Adds <paramref name="result"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="result">A Result.</param>
+        </member>
         <member name="T:Bookmaker.Services.ResultService">
             <summary>
             The <c>ResultService</c> class.
-            Contains all methods bound to the result
-            <list type="bullet">
-            <item>
-            <term>AddResult</term>
-            <description>Add new result operation</description>
-            </item>
-            </list>
+            Contains all methods bound to the result.
             </summary>
             <remarks>
             <para>This class can add new result.</para>
             </remarks>
         </member>
+        <member name="M:Bookmaker.Services.ResultService.#ctor(Bookmaker.Data.BookmakerContext)">
+            <summary>
+            Initializes a new instance of <c>ResultService</c> with parameter <paramref name="context"/>.
+            </summary>
+            <param name="context">A BookmakerContext.</param>
+        </member>
         <member name="M:Bookmaker.Services.ResultService.AddResult(Bookmaker.Data.Models.Result)">
             <summary>
-            Adds a result  name="a"/> and <paramref name="result"/> to the DBContext.
+            Adds <paramref name="result"/> to the DBContext.
             </summary>
             <returns>
             Nothing
             </returns>
+            <param name="result">A Result.</param>
         </member>
     </members>
 </doc>
