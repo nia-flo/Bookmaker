@@ -80,7 +80,17 @@ namespace Bookmaker.Services
 
             context.SaveChanges();
         }
-
+        // Add player to a team
+        /// <summary>
+        /// Add player to a team by <paramref name="id"/>.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="id">A Player.</param>
+        /// <remarks>
+        /// </remarks>
+        /// <param name="id">An integer.</param>
         public void AddPlayerToATeam(int teamId, int playerId)
         {
             Team team = GetTeamById(teamId);
@@ -115,6 +125,17 @@ namespace Bookmaker.Services
             context.SaveChanges();
         }
 
+        // Add a coach to a team
+        /// <summary>
+        /// Add coach to a team by <paramref name="id"/>.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="id">A coach.</param>
+        /// <remarks>
+        /// </remarks>
+        /// <param name="id">An integer.</param>
         public void AddCoachToATeam(int teamId, int coachId)
         {
             Team team = GetTeamById(teamId);
@@ -130,6 +151,19 @@ namespace Bookmaker.Services
             context.SaveChanges();
         }
 
+        // Remove a coach from a team
+        /// <summary>
+        /// Choose a coach by <paramref name="id"/>.
+        /// Choose a team by <paramref name="id"/>.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="id">A Coach.</param>
+        /// <remarks>
+        /// <para>The coach is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+        /// </remarks>
+        /// <param name="id">An integer.</param>
         public void RemoveCoachFromATeam(int teamId, int coachId)
         {
             Team team = GetTeamById(teamId);
