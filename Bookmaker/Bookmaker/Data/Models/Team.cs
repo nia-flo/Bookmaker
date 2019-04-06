@@ -18,6 +18,10 @@ namespace Bookmaker.Data.Models
     /// <inheritdoc cref="T:Bookmaker.Data.Models.IDeletable"/>
     public class Team : IDeletable
     {
+        // Constructor
+        /// <summary>
+        /// Initializes a new instance of <c>Team</c>.
+        /// </summary>
         public Team()
         {
             Players = new List<Player>();

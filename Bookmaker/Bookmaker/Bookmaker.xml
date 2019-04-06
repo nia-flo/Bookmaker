@@ -302,6 +302,11 @@
             </summary>
             <inheritdoc cref="T:Bookmaker.Data.Models.IDeletable"/>
         </member>
+        <member name="M:Bookmaker.Data.Models.Team.#ctor">
+            <summary>
+            Initializes a new instance of <c>Team</c>.
+            </summary>
+        </member>
         <member name="M:Bookmaker.Data.Models.Team.Delete">
             <summary>
             Deletes the entry.
