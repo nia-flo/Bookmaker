@@ -3,7 +3,7 @@
 namespace Bookmaker.Services
 {
     /*
-        The ResultService interface
+        The IResultService interface
         Contains all methods bound to the result
     */
     /// <summary>

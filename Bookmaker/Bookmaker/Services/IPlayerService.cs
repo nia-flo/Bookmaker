@@ -4,7 +4,7 @@ using Bookmaker.Data.Models;
 namespace Bookmaker.Services
 {
     /*
-        The ResultService interface
+        The IPlayerService interface
         Contains all methods bound to the result
     */
     /// <summary>
@@ -30,7 +30,6 @@ namespace Bookmaker.Services
         /// <returns>
         /// Nothing
         /// </returns>
-        /// <param name="id">A Player.</param>
         /// <remarks>
         /// <para>The player is not deleted from the DBContext, it's property ISDeleted is just made true</para>
         /// </remarks>

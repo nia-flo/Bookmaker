@@ -4,6 +4,12 @@
         <name>Bookmaker</name>
     </assembly>
     <members>
+        <member name="T:Bookmaker.Services.ICoachService">
+            <summary>
+            The <c>IPlayerService</c> interface.
+            Contains all methods bound to the player.
+            </summary>
+        </member>
         <member name="T:Bookmaker.Services.IPlayerService">
             <summary>
             The <c>IPlayerService</c> interface.

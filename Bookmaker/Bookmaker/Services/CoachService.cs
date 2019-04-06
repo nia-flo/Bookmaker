@@ -6,7 +6,7 @@ using Bookmaker.Data.Models;
 
 namespace Bookmaker.Services
 {
-    public class CoachService : ICoachSevice
+    public class CoachService : ICoachService
     {
         private BookmakerContext context;
 
