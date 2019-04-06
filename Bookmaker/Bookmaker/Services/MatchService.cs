@@ -9,6 +9,7 @@ namespace Bookmaker.Services
     public class MatchService : IMatchService
     {
         private BookmakerContext context;
+        private ResultService resultService;
 
         //public MatchService()
         //{
@@ -18,6 +19,7 @@ namespace Bookmaker.Services
         public MatchService(BookmakerContext context)
         {
             this.context = context;
+            this.resultService = new ResultService(context);
         }
 
         public void AddMatch(Match match)
@@ -55,6 +57,11 @@ namespace Bookmaker.Services
         {
             Match match = this.GetMatchById(id);
 
+            if (match.Result != null)
+            {
+                throw new ArgumentException(Exceptions.MatchHasAlreadyBeenPlayed);
+            }
+
             Random random = new Random();
             Result result = new Result()
             {
@@ -62,6 +69,9 @@ namespace Bookmaker.Services
                 GuestGoals = random.Next(0, Constants.MaxGoalsCount)
             };
 
+            resultService.AddResult(result);
+
+            match.ResultId = result.Id;
             match.Result = result;
 
             context.SaveChanges();

@@ -29,9 +29,11 @@ namespace Bookmaker.Data
         public static string MatchNotPlayed => "Match is not played yet!";
 
         public static string HostTeamNotCapableForAMatch =>
-            $"Host team is not capable for a match - it must have {Constants.MinPlayersCountForAMatch} players or more";
+            $"Host team is not capable for a match - it must have {Constants.MinPlayersCountForAMatch} players or more!";
 
         public static string GuestTeamNotCapableForAMatch =>
-            $"Guest team is not capable for a match - it must have {Constants.MinPlayersCountForAMatch} players or more";
+            $"Guest team is not capable for a match - it must have {Constants.MinPlayersCountForAMatch} players or more!";
+
+        public static string MatchHasAlreadyBeenPlayed => "Match has already been played!";
     }
 }

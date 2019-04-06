@@ -15,6 +15,8 @@ namespace Bookmaker.Data
 
         public virtual DbSet<Team> Teams { get; set; }
 
+        public virtual DbSet<Result> Results { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //koi server da izpolzva

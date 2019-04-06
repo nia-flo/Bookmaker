@@ -373,10 +373,9 @@ namespace Bookmaker.View
             {
                 Print(e.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //Print(SomethingWentWrong());
-                Console.WriteLine(ex.Message);
+                Print(SomethingWentWrong());
             }
         }
 
@@ -486,7 +485,7 @@ namespace Bookmaker.View
             {
                 Print(e.Message);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 Print(SomethingWentWrong());
             }
@@ -550,10 +549,9 @@ namespace Bookmaker.View
             {
                 Print(e.Message);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                //Print(SomethingWentWrong());
-                Console.WriteLine(ex.Message);
+                Print(SomethingWentWrong());
             }
         }
 
