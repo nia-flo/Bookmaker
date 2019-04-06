@@ -6,6 +6,14 @@ using Bookmaker.Data.Models;
 
 namespace Bookmaker.Services
 {
+    /*
+    The TeamService class
+    Contains all methods bound to the result
+*/
+    /// <summary>
+    /// The <c>TeamService</c> class.
+    /// Contains all methods bound to the team.
+    /// </summary>
     public class TeamService : ITeamService
     {
         private BookmakerContext context;
@@ -19,12 +27,26 @@ namespace Bookmaker.Services
         //    this.coachService = new CoachService(context);
         //}
 
+        // Constructor
+        /// <summary>
+        /// Initializes a new instance of <c>TeamService</c> with parameter <paramref name="context"/>.
+        /// </summary>
+        /// <param name="context">A BookmakerContext.</param>
+
         public TeamService(BookmakerContext context)
         {
             this.context = context;
             this.playerService = new PlayerService(context);
             this.coachService = new CoachService(context);
         }
+        // Adds a team to the DBContext
+        /// <summary>
+        /// Adds <paramref name="team"/> to the DBContext.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="team">A Team.</param>
 
         public void AddTeam(Team team)
         {
@@ -32,6 +54,18 @@ namespace Bookmaker.Services
 
             context.SaveChanges();
         }
+        // Deletes a team
+        /// <summary>
+        /// Deletes a team by <paramref name="id"/>.
+        /// </summary>
+        /// <returns>
+        /// Nothing
+        /// </returns>
+        /// <param name="id">A Team.</param>
+        /// <remarks>
+        /// <para>The team is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+        /// </remarks>
+        /// <param name="id">An integer.</param>
 
         public void DeleteTeam(int id)
         {
@@ -110,24 +144,51 @@ namespace Bookmaker.Services
 
             context.SaveChanges();
         }
+        // Gets all teams.
+        /// <summary>
+        /// Gets all teams.
+        /// </summary>
+        /// <returns>
+        /// A List with all teams
+        /// </returns>
 
         public List<Team> GetAll()
         {
             return context.Teams.Where(t => !t.IsDeleted).ToList();
         }
 
+        // Gets all teams by division.
+        /// <summary>
+        /// Gets all teams by division.
+        /// </summary>
+        /// <returns>
+        /// A List with all teams by division
+        /// </returns>
         public List<Team> GetAllByDivision(int division)
         {
             return context.Teams.Where(t => !t.IsDeleted && t.Division == division).ToList();
         }
 
+        // Gets all players for a team.
+        /// <summary>
+        /// Gets all players for a team.
+        /// </summary>
+        /// <returns>
+        /// A List with all players for a team.
+        /// </returns>
         public List<Player> GetAllPlayersForATeam(int teamId)
         {
             Team team = GetTeamById(teamId);
 
             return team.GetPlayers();
         }
-
+        // Gets  team by ID.
+        /// <summary>
+        /// Gets team by ID.
+        /// </summary>
+        /// <returns>
+        /// A team name.
+        /// </returns>
         public Team GetTeamById(int id)
         {
             Team team = context.Teams.FirstOrDefault(t => t.Id == id);
@@ -139,6 +200,14 @@ namespace Bookmaker.Services
 
             return team;
         }
+
+        // Gets all coaches for a team.
+        /// <summary>
+        /// Gets all coaches for a team.
+        /// </summary>
+        /// <returns>
+        /// A List with all coaches for a team
+        /// </returns>
 
         public List<Coach> GetAllCoachesForATeam(int teamId)
         {
