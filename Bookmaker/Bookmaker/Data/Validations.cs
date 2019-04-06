@@ -22,7 +22,7 @@ namespace Bookmaker.Data
         /// True if <paramref name="name"/> is valid, otherwise - false
         /// </returns>
         /// <param name="name">A string.</param>
-        public static bool IsNameValid(string name) => name.Trim().Length > 0 && Regex.IsMatch(name, @"^[a-zA-Z ]+$");
+        public static bool IsNameValid(string name) => name.Trim().Length > 0 && Regex.IsMatch(name, @"^[a-zA-Z0-9 ]+$");
 
         // Validates age
         /// <summary>

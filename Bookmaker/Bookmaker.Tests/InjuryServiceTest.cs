@@ -34,7 +34,7 @@ namespace Tests
         {
             Injury injury = new Injury();
 
-            Assert.Throws<ArgumentException>(() => injury.Name = "123");
+            Assert.Throws<ArgumentException>(() => injury.Name = "@#$");
         }
     }
 }

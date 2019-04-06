@@ -61,7 +61,7 @@ namespace Tests
         {
             Coach coach = new Coach();
 
-            Assert.Throws<ArgumentException>(() => coach.Name = "123");
+            Assert.Throws<ArgumentException>(() => coach.Name = "@#$");
         }
     }
 }

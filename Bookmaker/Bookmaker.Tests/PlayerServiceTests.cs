@@ -60,7 +60,7 @@ namespace Tests
         {
             Player player = new Player();
 
-            Assert.Throws<ArgumentException>(() => player.Name = "123");
+            Assert.Throws<ArgumentException>(() => player.Name = "@#$");
         }
     }
 }

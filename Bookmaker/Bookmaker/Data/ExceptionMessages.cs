@@ -17,7 +17,7 @@ namespace Bookmaker.Data
         /// Exception message for an invalid person name.
         /// </summary>
         public static string InvalidPersonName
-            => "Invalid name for a person - it must contain only letters and can't be empty!";
+            => "Invalid name for a person - it must contain only letters and numbers and can't be empty!";
 
         // Exception message for an invalid age
         /// <summary>
@@ -31,14 +31,14 @@ namespace Bookmaker.Data
         /// Exception message for an invalid injury name.
         /// </summary>
         public static string InvalidInjuryName
-            => "Invalid name for an injury - it must contain only letters and can't be empty!";
+            => "Invalid name for an injury - it must contain only letters and numbers and can't be empty!";
 
         // Exception message for an invalid team name
         /// <summary>
         /// Exception message for an invalid team name.
         /// </summary>
         public static string InvalidTeamName
-            => "Invalid name for a team - it must contain only letters and can't be empty!";
+            => "Invalid name for a team - it must contain only letters and numbers and can't be empty!";
 
         // Exception message for an invalid division
         /// <summary>
