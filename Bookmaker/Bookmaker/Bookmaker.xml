@@ -4,6 +4,69 @@
         <name>Bookmaker</name>
     </assembly>
     <members>
+        <member name="T:Bookmaker.Services.IPlayerService">
+            <summary>
+            The <c>IPlayerService</c> interface.
+            Contains all methods bound to the player.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Services.IPlayerService.AddPlayer(Bookmaker.Data.Models.Player)">
+            <summary>
+            Adds <paramref name="player"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="player">A Player.</param>
+        </member>
+        <member name="M:Bookmaker.Services.IPlayerService.DeletePlayer(System.Int32)">
+            <summary>
+            Deletes a player by <paramref name="id"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="id">A Player.</param>
+            <remarks>
+            <para>The player is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+            </remarks>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.IPlayerService.GetAll">
+            <summary>
+            Gets all players.
+            </summary>
+            <returns>
+            A List with all players
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.IPlayerService.GetAllOnSale">
+            <summary>
+            Gets all players that are on sale.
+            </summary>
+            <returns>
+            A List with all players that are on sale
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.IPlayerService.GetPlayerById(System.Int32)">
+            <summary>
+            Gets a player by id.
+            </summary>
+            <returns>
+            The player with this id
+            </returns>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.IPlayerService.AddInjury(System.Int32,System.String)">
+            <summary>
+            Adds <paramref name="name"/> to the player by his <paramref name="playerId"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="playerId">An integer.</param>
+            <param name="name">A string.</param>
+        </member>
         <member name="T:Bookmaker.Services.IResultService">
             <summary>
             The <c>IResultService</c> interface.
@@ -18,6 +81,56 @@
             Nothing
             </returns>
             <param name="result">A Result.</param>
+        </member>
+        <member name="T:Bookmaker.Services.PlayerService">
+            <summary>
+            The <c>PlayerService</c> class.
+            Contains all methods bound to the player.
+            </summary>
+        </member>
+        <member name="M:Bookmaker.Services.PlayerService.#ctor(Bookmaker.Data.BookmakerContext)">
+            <summary>
+            Initializes a new instance of <c>PlayerService</c> with parameter <paramref name="context"/>.
+            </summary>
+            <param name="context">A BookmakerContext.</param>
+        </member>
+        <member name="M:Bookmaker.Services.PlayerService.AddPlayer(Bookmaker.Data.Models.Player)">
+            <summary>
+            Adds <paramref name="player"/> to the DBContext.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="player">A Player.</param>
+        </member>
+        <member name="M:Bookmaker.Services.PlayerService.DeletePlayer(System.Int32)">
+            <summary>
+            Deletes a player by <paramref name="id"/>.
+            </summary>
+            <returns>
+            Nothing
+            </returns>
+            <param name="id">A Player.</param>
+            <remarks>
+            <para>The player is not deleted from the DBContext, it's property ISDeleted is just made true</para>
+            </remarks>
+            <param name="id">An integer.</param>
+        </member>
+        <member name="M:Bookmaker.Services.PlayerService.GetAll">
+            <summary>
+            Gets all players.
+            </summary>
+            <returns>
+            A List with all players
+            </returns>
+        </member>
+        <member name="M:Bookmaker.Services.PlayerService.GetAllOnSale">
+            <summary>
+            Gets all players that are on sale.
+            </summary>
+            <returns>
+            A List with all players that are on sale
+            </returns>
         </member>
         <member name="T:Bookmaker.Services.ResultService">
             <summary>
